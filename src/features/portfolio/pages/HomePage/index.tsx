@@ -7,7 +7,7 @@ import { SkillCard } from "../../components/SkillCard";
 import { ContactCard } from "../../components/ContactCard";
 import {
   contactLinks,
-  featuredProjects,
+  projects,
   portfolioAreas,
   portfolioStatusItems,
   skillGroups,
@@ -17,6 +17,9 @@ import {
 import styles from "./styles.module.css";
 
 export function HomePage() {
+
+  const featuredProjects = projects.filter((project) => project.featured);
+
   return (
     <div className={styles.page}>
       <section className={styles.hero}>

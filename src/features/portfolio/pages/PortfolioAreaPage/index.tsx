@@ -1,7 +1,7 @@
 import type { PortfolioAreaSlug } from "../../../../types/portfolio";
 import { ProjectCard } from "../../components/ProjectCard";
 import {
-  featuredProjects,
+  projects,
   portfolioAreaContents,
 } from "../../data/mockPortfolioData";
 
@@ -14,7 +14,7 @@ interface PortfolioAreaPageProps {
 export function PortfolioAreaPage({ areaSlug }: PortfolioAreaPageProps) {
   const content = portfolioAreaContents[areaSlug];
 
-  const areaProjects = featuredProjects.filter((project) =>
+  const areaProjects = projects.filter((project) =>
     project.areaSlugs.includes(areaSlug),
   );
 

@@ -1,6 +1,6 @@
 import type {
   ContactLink,
-  FeaturedProject,
+  ProjectSummary,
   PortfolioAreaItem,
   StatusItem,
   ProjectDetails,
@@ -35,7 +35,7 @@ export const portfolioAreas: PortfolioAreaItem[] = [
   },
 ];
 
-export const featuredProjects: FeaturedProject[] = [
+export const projects: ProjectSummary[] = [
   {
     title: "Manutix",
     slug: "manutix",
@@ -46,6 +46,7 @@ export const featuredProjects: FeaturedProject[] = [
     technologies: ["React", "TypeScript", "Supabase", "PostgreSQL"],
     coverImageUrl: null,
     areaSlugs: ["web"],
+    featured: true,
   },
   {
     title: "Cidade em Foco",
@@ -57,6 +58,7 @@ export const featuredProjects: FeaturedProject[] = [
     technologies: ["React", "TypeScript", "Supabase", "Leaflet"],
     coverImageUrl: null,
     areaSlugs: ["web"],
+    featured: true,
   },
   {
     title: "Dopamine Focus",
@@ -68,6 +70,7 @@ export const featuredProjects: FeaturedProject[] = [
     technologies: ["React", "TypeScript", "Supabase", "Gamificação"],
     coverImageUrl: null,
     areaSlugs: ["web"],
+    featured: true,
   },
 ];
 

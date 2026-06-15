@@ -6,16 +6,18 @@ export interface PortfolioAreaItem {
     href: string;
 }
 
-export interface FeaturedProject {
-    title: string;
-    slug: string;
-    description: string;
-    category: string;
-    status: string;
-    technologies: string[];
-    coverImageUrl: string | null;
-    areaSlugs: PortfolioAreaSlug[];
-  }
+export interface ProjectSummary {
+  title: string;
+  slug: string;
+  description: string;
+  category: string;
+  status: string;
+  technologies: string[];
+  coverImageUrl: string | null;
+  areaSlugs: PortfolioAreaSlug[];
+  featured: boolean;
+}
+
   
 
 export interface SkillGroup {

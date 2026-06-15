@@ -45,6 +45,7 @@ export const featuredProjects: FeaturedProject[] = [
     status: "Em evolução",
     technologies: ["React", "TypeScript", "Supabase", "PostgreSQL"],
     coverImageUrl: null,
+    areaSlugs: ["web"],
   },
   {
     title: "Cidade em Foco",
@@ -55,6 +56,7 @@ export const featuredProjects: FeaturedProject[] = [
     status: "Publicado",
     technologies: ["React", "TypeScript", "Supabase", "Leaflet"],
     coverImageUrl: null,
+    areaSlugs: ["web"],
   },
   {
     title: "Dopamine Focus",
@@ -65,8 +67,11 @@ export const featuredProjects: FeaturedProject[] = [
     status: "MVP",
     technologies: ["React", "TypeScript", "Supabase", "Gamificação"],
     coverImageUrl: null,
+    areaSlugs: ["web"],
   },
 ];
+
+
 
 export const skillGroups: SkillGroup[] = [
   {

@@ -10,11 +10,13 @@ export interface FeaturedProject {
     title: string;
     slug: string;
     description: string;
-    cetegory: string;
+    category: string;
     status: string;
     technologies: string[];
     coverImageUrl: string | null;
-}
+    areaSlugs: PortfolioAreaSlug[];
+  }
+  
 
 export interface SkillGroup {
     title: string;

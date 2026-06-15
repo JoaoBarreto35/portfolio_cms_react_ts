@@ -1,4 +1,3 @@
-import { Badge } from "../../../../components/ui/Badge";
 import { ButtonLink } from "../../../../components/ui/ButtonLink";
 import { SectionHeader } from "../../../../components/ui/SectionHeader";
 import {
@@ -11,6 +10,7 @@ import {
 import { ProjectCard } from "../../components/ProjectCard";
 import { StatusCard } from "../../components/StatusCard";
 import { AreaCard } from "../../components/AreaCard";
+import { SkillCard } from "../../components/SkillCard";
 
 
 import styles from "./styles.module.css";
@@ -89,22 +89,15 @@ export function HomePage() {
 
         <div className={styles.skillGrid}>
           {skillGroups.map((group) => (
-            <article key={group.title} className={styles.skillCard}>
-              <div>
-                <h3>{group.title}</h3>
-                <p>{group.description}</p>
-              </div>
-
-              <div className={styles.skillList}>
-                {group.skills.map((skill) => (
-                  <Badge key={skill} size="sm">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </article>
+            <SkillCard
+              key={group.title}
+              title={group.title}
+              description={group.description}
+              skills={group.skills}
+            />
           ))}
         </div>
+        
       </section>
 
       <section className={styles.areas} aria-label="Áreas do portfólio">

@@ -1,5 +1,10 @@
 import { ButtonLink } from "../../../../components/ui/ButtonLink";
 import { SectionHeader } from "../../../../components/ui/SectionHeader";
+import { ProjectCard } from "../../components/ProjectCard";
+import { StatusCard } from "../../components/StatusCard";
+import { AreaCard } from "../../components/AreaCard";
+import { SkillCard } from "../../components/SkillCard";
+import { ContactCard } from "../../components/ContactCard";
 import {
   contactLinks,
   featuredProjects,
@@ -7,10 +12,6 @@ import {
   portfolioStatusItems,
   skillGroups,
 } from "../../data/mockPortfolioData";
-import { ProjectCard } from "../../components/ProjectCard";
-import { StatusCard } from "../../components/StatusCard";
-import { AreaCard } from "../../components/AreaCard";
-import { SkillCard } from "../../components/SkillCard";
 
 
 import styles from "./styles.module.css";
@@ -97,7 +98,7 @@ export function HomePage() {
             />
           ))}
         </div>
-        
+
       </section>
 
       <section className={styles.areas} aria-label="Áreas do portfólio">
@@ -124,21 +125,17 @@ export function HomePage() {
           title="Vamos conversar sobre projetos, dados, automações ou oportunidades."
           description="Esta seção futuramente será alimentada pelas configurações gerais do portfólio no Supabase."
         />
-
         <div className={styles.contactGrid}>
           {contactLinks.map((contact) => (
-            <a
+            <ContactCard
               key={contact.label}
+              label={contact.label}
+              description={contact.description}
               href={contact.href}
-              className={styles.contactCard}
-              target={contact.href.startsWith("http") ? "_blank" : undefined}
-              rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
-            >
-              <strong>{contact.label}</strong>
-              <span>{contact.description}</span>
-            </a>
+            />
           ))}
         </div>
+
       </section>
     </div>
   );

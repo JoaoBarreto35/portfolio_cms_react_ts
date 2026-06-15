@@ -1,0 +1,30 @@
+.card {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.045);
+    color: var(--color-text);
+    text-decoration: none;
+    transition:
+      transform var(--transition-default),
+      border-color var(--transition-default),
+      background var(--transition-default);
+  }
+  
+  .card:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-3px);
+  }
+  
+  .card strong {
+    font-size: 1.05rem;
+  }
+  
+  .card span {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }

@@ -3,6 +3,7 @@ import type {
   FeaturedProject,
   PortfolioAreaItem,
   StatusItem,
+  PortfolioAreaContent,
   SkillGroup,
 } from "../../../types/portfolio";
 
@@ -121,3 +122,39 @@ export const portfolioStatusItems: StatusItem[] = [
     description: "Web, Dados, Automação e Games com identidade própria.",
   },
 ];
+
+export const portfolioAreaContents: Record<PortfolioAreaContent["slug"], PortfolioAreaContent> = {
+  web: {
+    slug: "web",
+    eyebrow: "Desenvolvimento Web",
+    title: "Sistemas web com cara de produto real.",
+    description:
+      "Projetos com React, TypeScript, Supabase, dashboards, autenticação, banco de dados, regras de negócio e interfaces modernas.",
+    highlights: ["React + TypeScript", "Supabase", "SaaS e dashboards"],
+  },
+  "data-analytics": {
+    slug: "data-analytics",
+    eyebrow: "Dados & Analytics",
+    title: "Dashboards e análises para transformar dados em decisão.",
+    description:
+      "Projetos voltados para indicadores, relatórios, Power BI, SQL, automações de dados e visualização de informações relevantes.",
+    highlights: ["Power BI", "SQL e Python", "Indicadores e insights"],
+  },
+  automation: {
+    slug: "automation",
+    eyebrow: "Automação",
+    title: "Processos manuais transformados em fluxos inteligentes.",
+    description:
+      "Automações com planilhas, APIs, webhooks, integrações, Power Automate e soluções para reduzir retrabalho operacional.",
+    highlights: ["APIs e webhooks", "Power Automate", "Planilhas inteligentes"],
+  },
+  game: {
+    slug: "game",
+    eyebrow: "Games & Experimentos",
+    title: "Interações criativas, jogos e experiências visuais.",
+    description:
+      "Projetos voltados para lógica, jogabilidade, criatividade, protótipos interativos e experimentos visuais para aprendizado e portfólio.",
+    highlights: ["Game logic", "Experimentos", "Interatividade"],
+  },
+};
+

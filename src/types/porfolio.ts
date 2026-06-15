@@ -32,3 +32,11 @@ export interface StatusItem {
     title: string;
     description: string;
 }
+export interface PortfolioAreaContent {
+    slug: PortfolioAreaSlug;
+    eyebrow: string;
+    title: string;
+    description: string;
+    highlights: string[];
+  }
+  

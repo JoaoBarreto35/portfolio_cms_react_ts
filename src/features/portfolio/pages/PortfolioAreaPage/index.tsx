@@ -1,52 +1,14 @@
-import styles from "./styles.module.css";
+import type { PortfolioAreaSlug } from "../../../../types/portfolio";
+import { portfolioAreaContents } from "../../data/mockPortfolioData";
 
-type PortfolioAreaSlug = "web" | "data-analytics" | "automation" | "game";
+import styles from "./styles.module.css";
 
 interface PortfolioAreaPageProps {
   areaSlug: PortfolioAreaSlug;
 }
 
-const areaContent: Record<
-  PortfolioAreaSlug,
-  {
-    eyebrow: string;
-    title: string;
-    description: string;
-    highlights: string[];
-  }
-> = {
-  web: {
-    eyebrow: "Desenvolvimento Web",
-    title: "Sistemas web com cara de produto real.",
-    description:
-      "Projetos com React, TypeScript, Supabase, dashboards, autenticação, banco de dados, regras de negócio e interfaces modernas.",
-    highlights: ["React + TypeScript", "Supabase", "SaaS e dashboards"],
-  },
-  "data-analytics": {
-    eyebrow: "Dados & Analytics",
-    title: "Dashboards e análises para transformar dados em decisão.",
-    description:
-      "Projetos voltados para indicadores, relatórios, Power BI, SQL, automações de dados e visualização de informações relevantes.",
-    highlights: ["Power BI", "SQL e Python", "Indicadores e insights"],
-  },
-  automation: {
-    eyebrow: "Automação",
-    title: "Processos manuais transformados em fluxos inteligentes.",
-    description:
-      "Automações com planilhas, APIs, webhooks, integrações, Power Automate e soluções para reduzir retrabalho operacional.",
-    highlights: ["APIs e webhooks", "Power Automate", "Planilhas inteligentes"],
-  },
-  game: {
-    eyebrow: "Games & Experimentos",
-    title: "Interações criativas, jogos e experiências visuais.",
-    description:
-      "Projetos voltados para lógica, jogabilidade, criatividade, protótipos interativos e experimentos visuais para aprendizado e portfólio.",
-    highlights: ["Game logic", "Experimentos", "Interatividade"],
-  },
-};
-
 export function PortfolioAreaPage({ areaSlug }: PortfolioAreaPageProps) {
-  const content = areaContent[areaSlug];
+  const content = portfolioAreaContents[areaSlug];
 
   return (
     <div className={`${styles.page} ${styles[areaSlug]}`}>

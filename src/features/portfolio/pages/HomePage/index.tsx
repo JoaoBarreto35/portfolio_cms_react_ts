@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import { ButtonLink } from "../../../../components/ui/ButtonLink";
 import { SectionHeader } from "../../../../components/ui/SectionHeader";
+import { Badge } from "../../../../components/ui/Badge";
 import { ProjectCard } from "../../components/ProjectCard";
 
 import styles from "./styles.module.css";
@@ -59,6 +60,28 @@ const featuredProjects = [
     status: "MVP",
     technologies: ["React", "TypeScript", "Supabase", "Gamificação"],
     coverImageUrl: null,
+  },
+];
+const skillGroups = [
+  {
+    title: "Frontend",
+    description: "Interfaces modernas, responsivas e organizadas.",
+    skills: ["React", "TypeScript", "Vite", "CSS Modules", "React Router"],
+  },
+  {
+    title: "Backend & Banco",
+    description: "Estruturação de dados, autenticação e regras de negócio.",
+    skills: ["Supabase", "PostgreSQL", "RLS", "RPC", "Auth"],
+  },
+  {
+    title: "Dados & BI",
+    description: "Indicadores, dashboards e análise para decisão.",
+    skills: ["Power BI", "SQL", "Excel", "Python", "Dashboards"],
+  },
+  {
+    title: "Automação",
+    description: "Redução de processos manuais com fluxos e integrações.",
+    skills: ["Power Automate", "APIs", "Webhooks", "Planilhas", "Integrações"],
   },
 ];
 
@@ -130,6 +153,33 @@ export function HomePage() {
           <ButtonLink to="/web" variant="secondary">
             Ver todos os projetos web
           </ButtonLink>
+        </div>
+      </section>
+
+      <section className={styles.skills}>
+        <SectionHeader
+          eyebrow="Habilidades"
+          title="Tecnologias e competências que conectam desenvolvimento, dados e operação."
+          description="Essa seção também será dinâmica futuramente, permitindo cadastrar novas habilidades pela central administrativa."
+        />
+
+        <div className={styles.skillGrid}>
+          {skillGroups.map((group) => (
+            <article key={group.title} className={styles.skillCard}>
+              <div>
+                <h3>{group.title}</h3>
+                <p>{group.description}</p>
+              </div>
+
+              <div className={styles.skillList}>
+                {group.skills.map((skill) => (
+                  <Badge key={skill} size="sm">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

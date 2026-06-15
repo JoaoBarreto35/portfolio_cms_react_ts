@@ -72,6 +72,55 @@ export const projects: ProjectSummary[] = [
     areaSlugs: ["web"],
     featured: true,
   },
+  {
+    title: "Dashboard de Produtividade",
+    slug: "dashboard-produtividade",
+    description:
+      "Dashboard analítico para acompanhar produtividade, indicadores operacionais e evolução de resultados.",
+    category: "Dados",
+    status: "Conceito",
+    technologies: ["Power BI", "SQL", "Excel", "Indicadores"],
+    coverImageUrl: null,
+    areaSlugs: ["data-analytics"],
+    featured: false,
+  },
+  {
+    title: "Monitoramento IoT",
+    slug: "monitoramento-iot",
+    description:
+      "Projeto de visualização e acompanhamento de dados operacionais com foco em indicadores e monitoramento.",
+    category: "Dados",
+    status: "Estudo",
+    technologies: ["Power BI", "IoT", "Dashboards", "Análise de dados"],
+    coverImageUrl: null,
+    areaSlugs: ["data-analytics", "automation"],
+    featured: false,
+  },
+  {
+    title: "Automação de Planilhas",
+    slug: "automacao-planilhas",
+    description:
+      "Fluxo para transformar atualização manual de planilhas em um processo mais rápido, padronizado e confiável.",
+    category: "Automação",
+    status: "Conceito",
+    technologies: ["Excel", "JavaScript", "HTML", "CSS", "Automação"],
+    coverImageUrl: null,
+    areaSlugs: ["automation"],
+    featured: false,
+  },
+  {
+    title: "Escape the Hollow",
+    slug: "escape-the-hollow",
+    description:
+      "Jogo experimental com foco em lógica, exploração, ambientação e interação para aprendizado prático.",
+    category: "Games",
+    status: "Publicado",
+    technologies: ["JavaScript", "Game Logic", "HTML", "CSS"],
+    coverImageUrl: null,
+    areaSlugs: ["game"],
+    featured: false,
+  },
+  
 ];
 
 
@@ -224,4 +273,80 @@ export const projectDetailsBySlug: Record<string, ProjectDetails> = {
     impact:
       "O projeto demonstra aplicação de gamificação em um problema real, combinando experiência do usuário, lógica de progresso, banco de dados e acompanhamento de comportamento.",
   },
+  "dashboard-produtividade": {
+    title: "Dashboard de Produtividade",
+    slug: "dashboard-produtividade",
+    subtitle:
+      "Dashboard analítico para acompanhar produtividade, indicadores operacionais e evolução de resultados.",
+    category: "Dados & Analytics",
+    year: "2026",
+    status: "Conceito",
+    role: "Data Analyst",
+    technologies: ["Power BI", "SQL", "Excel", "Indicadores"],
+    coverImageUrl: null,
+    problem:
+      "Indicadores operacionais espalhados em controles diferentes dificultam a leitura rápida de produtividade, evolução e pontos de atenção.",
+    solution:
+      "Estruturação de um dashboard com visão consolidada, KPIs principais, filtros e leitura visual dos dados para apoiar decisões.",
+    impact:
+      "O projeto demonstra capacidade de transformar dados brutos em informação clara, visual e útil para acompanhamento de performance.",
+  },
+  
+  "monitoramento-iot": {
+    title: "Monitoramento IoT",
+    slug: "monitoramento-iot",
+    subtitle:
+      "Projeto de visualização e acompanhamento de dados operacionais com foco em indicadores e monitoramento.",
+    category: "Dados & Automação",
+    year: "2026",
+    status: "Estudo",
+    role: "Data Analyst / Developer",
+    technologies: ["Power BI", "IoT", "Dashboards", "Análise de dados"],
+    coverImageUrl: null,
+    problem:
+      "Dados de monitoramento podem perder valor quando não são organizados em uma visualização clara, dificultando a identificação de padrões e anomalias.",
+    solution:
+      "Criação de uma proposta de painel para leitura de dados operacionais, com foco em indicadores, acompanhamento e interpretação visual.",
+    impact:
+      "O projeto mostra a conexão entre tecnologia, dados e operação, aproximando análise visual de problemas práticos do ambiente real.",
+  },
+  
+  "automacao-planilhas": {
+    title: "Automação de Planilhas",
+    slug: "automacao-planilhas",
+    subtitle:
+      "Fluxo para transformar atualização manual de planilhas em um processo mais rápido, padronizado e confiável.",
+    category: "Automação",
+    year: "2026",
+    status: "Conceito",
+    role: "Automation Developer",
+    technologies: ["Excel", "JavaScript", "HTML", "CSS", "Automação"],
+    coverImageUrl: null,
+    problem:
+      "Atualizações manuais em planilhas consomem tempo, aumentam risco de erro e tornam o processo dependente de repetição operacional.",
+    solution:
+      "Criação de uma interface simples para receber arquivos, processar dados e gerar uma planilha atualizada de forma padronizada.",
+    impact:
+      "O projeto demonstra pensamento de automação, redução de retrabalho e criação de ferramentas práticas para problemas do dia a dia.",
+  },
+  
+  "escape-the-hollow": {
+    title: "Escape the Hollow",
+    slug: "escape-the-hollow",
+    subtitle:
+      "Jogo experimental com foco em lógica, exploração, ambientação e interação para aprendizado prático.",
+    category: "Games & Experimentos",
+    year: "2026",
+    status: "Publicado",
+    role: "Game Developer",
+    technologies: ["JavaScript", "Game Logic", "HTML", "CSS"],
+    coverImageUrl: null,
+    problem:
+      "Projetos de portfólio também precisam demonstrar criatividade, lógica e domínio de interação, não apenas telas estáticas.",
+    solution:
+      "Desenvolvimento de um jogo experimental com mecânicas simples, ambientação e estrutura interativa para treinar lógica e experiência do usuário.",
+    impact:
+      "O projeto mostra versatilidade, criatividade e capacidade de aplicar programação em experiências mais lúdicas e interativas.",
+  },
+  
 };

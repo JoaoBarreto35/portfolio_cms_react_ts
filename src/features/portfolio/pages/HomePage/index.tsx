@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ButtonLink } from "../../../../components/ui/ButtonLink"
+import { SectionHeader } from "../../../../components/ui/SectionHeader"
 
 import styles from "./styles.module.css";
 
@@ -71,10 +72,10 @@ export function HomePage() {
       </section>
 
       <section className={styles.areas} aria-label="Áreas do portfólio">
-        <div className={styles.sectionHeader}>
-          <p>Áreas principais</p>
-          <h2>Um portfólio geral, com vitrines específicas.</h2>
-        </div>
+        <SectionHeader
+          eyebrow = "Áreas principais"
+          title="Um portfólio geral, com vitrines específicas."
+        />
 
         <div className={styles.areaGrid}>
           {portfolioAreas.map((area) => (

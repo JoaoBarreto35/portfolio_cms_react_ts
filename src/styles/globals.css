@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background:
+      radial-gradient(circle at top left, rgba(59, 130, 246, 0.16), transparent 32rem),
+      radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.1), transparent 30rem),
+      var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body,
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  button,
+  input,
+  textarea,
+  select {
+    border: 0;
+  }
+  
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  a {
+    color: inherit;
+  }
+  
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+  
+  #root {
+    min-height: 100vh;
+  }
+  
+  ::selection {
+    background: rgba(59, 130, 246, 0.35);
+    color: var(--color-text);
+  }

@@ -2,13 +2,7 @@ import { AppShell } from "./components/layout/AppShell";
 
 function App() {
 
-  return (
-    <AppShell>
-      <section>
-        <p> Content</p>
-      </section>
-    </AppShell>
-  )
+  return null;
 }
 
 export default App

@@ -1,28 +1,26 @@
-import type { ReactNode } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 import styles from "./styles.module.css";
 
-interface AppShellProps {
-  children: ReactNode;
-}
-
-export function AppShell({ children }: AppShellProps) {
+export function AppShell() {
   return (
     <div className={styles.shell}>
       <header className={styles.header}>
-        <a href="/" className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           João Barreto
-        </a>
+        </Link>
 
         <nav className={styles.nav} aria-label="Navegação principal">
-          <a href="#web">Web</a>
-          <a href="#dados">Dados</a>
-          <a href="#automacao">Automação</a>
-          <a href="#games">Games</a>
+          <Link to="/web">Web</Link>
+          <Link to="/data-analytics">Dados</Link>
+          <Link to="/automation">Automação</Link>
+          <Link to="/game">Games</Link>
         </nav>
       </header>
 
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>
+        <Outlet />
+      </main>
 
       <footer className={styles.footer}>
         <span>© {new Date().getFullYear()} João Barreto.</span>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ButtonLink } from "../../../../components/ui/ButtonLink"
 
 import styles from "./styles.module.css";
 
@@ -42,13 +43,13 @@ export function HomePage() {
         </p>
 
         <div className={styles.actions}>
-          <Link to="/web" className={styles.primaryAction}>
+          <ButtonLink to="/web" className={styles.primaryAction}>
             Ver projetos web
-          </Link>
+          </ButtonLink>
 
-          <Link to="/admin" className={styles.secondaryAction}>
+          <ButtonLink to="/admin" className={styles.secondaryAction}>
             Acessar central
-          </Link>
+          </ButtonLink>
         </div>
       </section>
 

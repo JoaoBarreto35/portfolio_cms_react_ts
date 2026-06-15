@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+import { ButtonLink } from "../../../../components/ui/ButtonLink"
 import styles from "./styles.module.css";
 
 export function NotFoundPage() {
@@ -16,13 +15,13 @@ export function NotFoundPage() {
         </p>
 
         <div className={styles.actions}>
-          <Link to="/" className={styles.primaryAction}>
+          <ButtonLink to="/" className={styles.primaryAction}>
             Voltar para a Home
-          </Link>
+          </ButtonLink>
 
-          <Link to="/web" className={styles.secondaryAction}>
+          <ButtonLink to="/web" className={styles.secondaryAction}>
             Ver projetos web
-          </Link>
+          </ButtonLink>
         </div>
       </section>
     </div>

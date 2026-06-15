@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import { ButtonLink } from "../../../../components/ui/ButtonLink"
-import { SectionHeader } from "../../../../components/ui/SectionHeader"
+
+import { ButtonLink } from "../../../../components/ui/ButtonLink";
+import { SectionHeader } from "../../../../components/ui/SectionHeader";
+import { ProjectCard } from "../../components/ProjectCard";
 
 import styles from "./styles.module.css";
 
@@ -27,6 +29,39 @@ const portfolioAreas = [
   },
 ];
 
+const featuredProjects = [
+  {
+    title: "Manutix",
+    slug: "manutix",
+    description:
+      "Sistema CMMS para gestão de chamados, ordens de serviço, ativos, planejamento, execução e validação.",
+    category: "Web",
+    status: "Em evolução",
+    technologies: ["React", "TypeScript", "Supabase", "PostgreSQL"],
+    coverImageUrl: null,
+  },
+  {
+    title: "Cidade em Foco",
+    slug: "cidade-em-foco",
+    description:
+      "Aplicação comunitária para registrar ocorrências urbanas com foto, localização, mapa e painel de indicadores.",
+    category: "Web",
+    status: "Publicado",
+    technologies: ["React", "TypeScript", "Supabase", "Leaflet"],
+    coverImageUrl: null,
+  },
+  {
+    title: "Dopamine Focus",
+    slug: "dopamine-focus",
+    description:
+      "Aplicativo de foco e produtividade com gamificação, tarefas, sessões de concentração e evolução do usuário.",
+    category: "Web",
+    status: "MVP",
+    technologies: ["React", "TypeScript", "Supabase", "Gamificação"],
+    coverImageUrl: null,
+  },
+];
+
 export function HomePage() {
   return (
     <div className={styles.page}>
@@ -44,11 +79,9 @@ export function HomePage() {
         </p>
 
         <div className={styles.actions}>
-          <ButtonLink to="/web" className={styles.primaryAction}>
-            Ver projetos web
-          </ButtonLink>
+          <ButtonLink to="/web">Ver projetos web</ButtonLink>
 
-          <ButtonLink to="/admin" className={styles.secondaryAction}>
+          <ButtonLink to="/admin" variant="secondary">
             Acessar central
           </ButtonLink>
         </div>
@@ -71,9 +104,38 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className={styles.featuredProjects}>
+        <SectionHeader
+          eyebrow="Projetos em destaque"
+          title="Projetos que mostram aplicação real de tecnologia."
+          description="Nesta primeira versão, os projetos ainda estão mockados. Depois eles serão carregados diretamente do Supabase."
+        />
+
+        <div className={styles.projectGrid}>
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              slug={project.slug}
+              description={project.description}
+              category={project.category}
+              status={project.status}
+              technologies={project.technologies}
+              coverImageUrl={project.coverImageUrl}
+            />
+          ))}
+        </div>
+
+        <div className={styles.featuredActions}>
+          <ButtonLink to="/web" variant="secondary">
+            Ver todos os projetos web
+          </ButtonLink>
+        </div>
+      </section>
+
       <section className={styles.areas} aria-label="Áreas do portfólio">
         <SectionHeader
-          eyebrow = "Áreas principais"
+          eyebrow="Áreas principais"
           title="Um portfólio geral, com vitrines específicas."
         />
 

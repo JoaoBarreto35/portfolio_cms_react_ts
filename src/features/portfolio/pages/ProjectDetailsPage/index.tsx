@@ -1,3 +1,5 @@
+import { Badge } from "../../../../components/ui/Badge"
+
 import styles from "./styles.module.css";
 
 interface MockProject {
@@ -41,8 +43,8 @@ export function ProjectDetailsPage() {
             <h1>{mockProject.title}</h1>
             <p className={styles.subtitle}>{mockProject.subtitle}</p>
           </div>
-
-          <div className={styles.statusPill}>{mockProject.status}</div>
+          <Badge variant="success">{mockProject.status}</Badge>
+          
         </div>
       </section>
 
@@ -94,7 +96,7 @@ export function ProjectDetailsPage() {
 
         <div className={styles.techList}>
           {mockProject.technologies.map((technology) => (
-            <span key={technology}>{technology}</span>
+            <Badge key={technology} variant="primary">{technology}</Badge>
           ))}
         </div>
       </section>

@@ -1,0 +1,59 @@
+.badge {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  
+  .sm {
+    min-height: 1.9rem;
+    padding: 0 var(--space-3);
+    font-size: 0.78rem;
+  }
+  
+  .md {
+    min-height: 2.3rem;
+    padding: 0 var(--space-4);
+    font-size: 0.9rem;
+  }
+  
+  .default {
+    border-color: var(--color-border);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text);
+  }
+  
+  .primary {
+    border-color: rgba(59, 130, 246, 0.35);
+    background: rgba(59, 130, 246, 0.14);
+    color: #bfdbfe;
+  }
+  
+  .success {
+    border-color: rgba(34, 197, 94, 0.35);
+    background: rgba(34, 197, 94, 0.12);
+    color: #86efac;
+  }
+  
+  .warning {
+    border-color: rgba(245, 158, 11, 0.35);
+    background: rgba(245, 158, 11, 0.14);
+    color: #fcd34d;
+  }
+  
+  .danger {
+    border-color: rgba(239, 68, 68, 0.35);
+    background: rgba(239, 68, 68, 0.14);
+    color: #fca5a5;
+  }
+  
+  .purple {
+    border-color: rgba(168, 85, 247, 0.35);
+    background: rgba(168, 85, 247, 0.14);
+    color: #d8b4fe;
+  }

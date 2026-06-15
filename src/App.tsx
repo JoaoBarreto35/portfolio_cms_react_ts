@@ -1,11 +1,13 @@
-
+import { AppShell } from "./components/layout/AppShell";
 
 function App() {
 
   return (
-    <>
-      <p>App.tsx</p>
-    </>
+    <AppShell>
+      <section>
+        <p> Content</p>
+      </section>
+    </AppShell>
   )
 }
 

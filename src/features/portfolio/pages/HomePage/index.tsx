@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { Badge } from "../../../../components/ui/Badge";
 import { ButtonLink } from "../../../../components/ui/ButtonLink";
 import { SectionHeader } from "../../../../components/ui/SectionHeader";
@@ -12,6 +10,7 @@ import {
 } from "../../data/mockPortfolioData";
 import { ProjectCard } from "../../components/ProjectCard";
 import { StatusCard } from "../../components/StatusCard";
+import { AreaCard } from "../../components/AreaCard";
 
 
 import styles from "./styles.module.css";
@@ -116,11 +115,12 @@ export function HomePage() {
 
         <div className={styles.areaGrid}>
           {portfolioAreas.map((area) => (
-            <Link key={area.href} to={area.href} className={styles.areaCard}>
-              <h3>{area.title}</h3>
-              <p>{area.description}</p>
-              <span>Explorar área</span>
-            </Link>
+            <AreaCard
+              key={area.href}
+              title={area.title}
+              description={area.description}
+              href={area.href}
+            />
           ))}
         </div>
       </section>

@@ -19,19 +19,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "web",
-        element: <PortfolioAreaPage />,
+        element: <PortfolioAreaPage areaSlug="web"/>,
       },
       {
         path: "data-analytics",
-        element: <PortfolioAreaPage />,
+        element: <PortfolioAreaPage areaSlug="data-analytics"/>,
       },
       {
         path: "automation",
-        element: <PortfolioAreaPage />,
+        element: <PortfolioAreaPage areaSlug="automation"/>,
       },
       {
         path: "game",
-        element: <PortfolioAreaPage />,
+        element: <PortfolioAreaPage areaSlug="game"/>,
       },
       {
         path: "project/:projectSlug",

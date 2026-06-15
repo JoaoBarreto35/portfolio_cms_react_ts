@@ -3,6 +3,7 @@ import type {
   FeaturedProject,
   PortfolioAreaItem,
   StatusItem,
+  ProjectDetails,
   PortfolioAreaContent,
   SkillGroup,
 } from "../../../types/portfolio";
@@ -158,3 +159,61 @@ export const portfolioAreaContents: Record<PortfolioAreaContent["slug"], Portfol
   },
 };
 
+export const projectDetailsBySlug: Record<string, ProjectDetails> = {
+  manutix: {
+    title: "Manutix",
+    slug: "manutix",
+    subtitle:
+      "Sistema CMMS para gestão de chamados, ordens de serviço, ativos, planejamento, execução e validação.",
+    category: "Desenvolvimento Web",
+    year: "2026",
+    status: "Em evolução",
+    role: "Full Stack Developer",
+    technologies: ["React", "TypeScript", "Supabase", "PostgreSQL", "CSS Modules"],
+    coverImageUrl: null,
+    problem:
+      "Processos de manutenção costumam ficar espalhados em planilhas, mensagens e controles manuais, dificultando o acompanhamento das ordens de serviço.",
+    solution:
+      "Criação de uma plataforma com cadastro de ativos, chamados, ordens de serviço, kanban operacional, subtarefas, execução técnica e validação.",
+    impact:
+      "O projeto demonstra domínio de regras de negócio reais, autenticação, banco relacional, permissões, fluxos operacionais e experiência de usuário.",
+  },
+
+  "cidade-em-foco": {
+    title: "Cidade em Foco",
+    slug: "cidade-em-foco",
+    subtitle:
+      "Aplicação comunitária para registrar ocorrências urbanas com foto, localização, mapa e painel de indicadores.",
+    category: "Desenvolvimento Web",
+    year: "2026",
+    status: "Publicado",
+    role: "Full Stack Developer",
+    technologies: ["React", "TypeScript", "Supabase", "Leaflet", "CSS Modules"],
+    coverImageUrl: null,
+    problem:
+      "Problemas urbanos como focos de dengue, lixo acumulado, entulho, mato alto e esgoto a céu aberto muitas vezes não são registrados de forma clara e acompanhável pela comunidade.",
+    solution:
+      "Desenvolvimento de um web app com cadastro de ocorrências, foto obrigatória, localização em mapa, lista pública, painel de indicadores e fluxo colaborativo de resolução.",
+    impact:
+      "O projeto mostra capacidade de criar uma solução com utilidade social, regras de validação, dados geográficos, moderação e visualização de informações para tomada de decisão.",
+  },
+
+  "dopamine-focus": {
+    title: "Dopamine Focus",
+    slug: "dopamine-focus",
+    subtitle:
+      "Aplicativo de foco e produtividade com gamificação, tarefas, sessões de concentração e evolução do usuário.",
+    category: "Desenvolvimento Web",
+    year: "2026",
+    status: "MVP",
+    role: "Full Stack Developer",
+    technologies: ["React", "TypeScript", "Supabase", "Gamificação", "CSS Modules"],
+    coverImageUrl: null,
+    problem:
+      "Muitas pessoas têm dificuldade em manter foco, organizar tarefas e sustentar uma rotina produtiva sem estímulos visuais e progressão clara.",
+    solution:
+      "Criação de uma aplicação com tarefas, sessões de foco, evolução por XP, níveis, streaks e conquistas para tornar o processo de produtividade mais motivador.",
+    impact:
+      "O projeto demonstra aplicação de gamificação em um problema real, combinando experiência do usuário, lógica de progresso, banco de dados e acompanhamento de comportamento.",
+  },
+};

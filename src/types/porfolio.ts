@@ -40,3 +40,18 @@ export interface PortfolioAreaContent {
     highlights: string[];
   }
   
+  export interface ProjectDetails {
+    title: string;
+    slug: string;
+    subtitle: string;
+    category: string;
+    year: string;
+    status: string;
+    role: string;
+    technologies: string[];
+    problem: string;
+    solution: string;
+    impact: string;
+    coverImageUrl: string | null;
+  }
+  

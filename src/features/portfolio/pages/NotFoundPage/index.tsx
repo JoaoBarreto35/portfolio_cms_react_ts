@@ -1,14 +1,30 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-export function NotFoundPage(){
-    return (
-        <section>
-            <p>404</p>
+import styles from "./styles.module.css";
 
-            <h1> Página não encontrada </h1>
+export function NotFoundPage() {
+  return (
+    <div className={styles.page}>
+      <section className={styles.card}>
+        <p className={styles.eyebrow}>Erro 404</p>
 
+        <h1>Página não encontrada.</h1>
 
-            <p>Essa rota não existe</p>
-        </section>
-    );
+        <p className={styles.description}>
+          Essa rota ainda não existe no portfólio ou pode ter sido movida.
+          Volte para a página inicial ou explore uma das vitrines principais.
+        </p>
+
+        <div className={styles.actions}>
+          <Link to="/" className={styles.primaryAction}>
+            Voltar para a Home
+          </Link>
+
+          <Link to="/web" className={styles.secondaryAction}>
+            Ver projetos web
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
 }

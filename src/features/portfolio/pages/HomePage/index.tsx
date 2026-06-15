@@ -7,9 +7,12 @@ import {
   contactLinks,
   featuredProjects,
   portfolioAreas,
+  portfolioStatusItems,
   skillGroups,
 } from "../../data/mockPortfolioData";
 import { ProjectCard } from "../../components/ProjectCard";
+import { StatusCard } from "../../components/StatusCard";
+
 
 import styles from "./styles.module.css";
 
@@ -20,7 +23,8 @@ export function HomePage() {
         <p className={styles.eyebrow}>Portfolio CMS pessoal</p>
 
         <h1>
-          João Barreto — sistemas, dados e automações para resolver problemas reais.
+          João Barreto <br></br>
+          Transformo seus problemas em soluções digitais.
         </h1>
 
         <p className={styles.description}>
@@ -39,20 +43,13 @@ export function HomePage() {
       </section>
 
       <section className={styles.statusGrid} aria-label="Resumo do projeto">
-        <div className={styles.statusCard}>
-          <strong>React + TypeScript</strong>
-          <span>Base moderna para evoluir com segurança.</span>
-        </div>
-
-        <div className={styles.statusCard}>
-          <strong>Supabase CMS</strong>
-          <span>Futuramente todo conteúdo virá do banco.</span>
-        </div>
-
-        <div className={styles.statusCard}>
-          <strong>Rotas por área</strong>
-          <span>Web, Dados, Automação e Games com identidade própria.</span>
-        </div>
+        {portfolioStatusItems.map((item) => (
+          <StatusCard
+            key={item.title}
+            title={item.title}
+            description={item.description}
+          />
+        ))}
       </section>
 
       <section className={styles.featuredProjects}>

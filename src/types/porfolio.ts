@@ -27,3 +27,8 @@ export interface ContactLink{
     description: string;
     href: string;
 }
+
+export interface StatusItem {
+    title: string;
+    description: string;
+}

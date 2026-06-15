@@ -47,25 +47,6 @@
     gap: var(--space-4);
   }
   
-  .statusCard {
-    display: grid;
-    gap: var(--space-2);
-    padding: var(--space-5);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-2xl);
-    background: var(--color-surface-soft);
-  }
-  
-  .statusCard strong {
-    font-size: 1rem;
-  }
-  
-  .statusCard span {
-    color: var(--color-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  
   .areas {
     display: grid;
     gap: var(--space-6);

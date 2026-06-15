@@ -84,6 +84,23 @@ const skillGroups = [
     skills: ["Power Automate", "APIs", "Webhooks", "Planilhas", "Integrações"],
   },
 ];
+const contactLinks = [
+  {
+    label: "GitHub",
+    description: "Veja meus repositórios, projetos e evolução técnica.",
+    href: "https://github.com/JoaoBarreto35",
+  },
+  {
+    label: "LinkedIn",
+    description: "Conecte-se comigo profissionalmente.",
+    href: "https://www.linkedin.com",
+  },
+  {
+    label: "E-mail",
+    description: "Entre em contato para projetos, oportunidades ou networking.",
+    href: "mailto:contato@joaobarreto.com",
+  },
+];
 
 export function HomePage() {
   return (
@@ -196,6 +213,29 @@ export function HomePage() {
               <p>{area.description}</p>
               <span>Explorar área</span>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.contact}>
+        <SectionHeader
+          eyebrow="Contato"
+          title="Vamos conversar sobre projetos, dados, automações ou oportunidades."
+          description="Esta seção futuramente será alimentada pelas configurações gerais do portfólio no Supabase."
+        />
+
+        <div className={styles.contactGrid}>
+          {contactLinks.map((contact) => (
+            <a
+              key={contact.label}
+              href={contact.href}
+              className={styles.contactCard}
+              target={contact.href.startsWith("http") ? "_blank" : undefined}
+              rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
+            >
+              <strong>{contact.label}</strong>
+              <span>{contact.description}</span>
+            </a>
           ))}
         </div>
       </section>

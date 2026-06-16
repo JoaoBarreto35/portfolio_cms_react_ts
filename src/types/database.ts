@@ -103,3 +103,25 @@ export interface ProjectSummaryRow {
   created_at: string;
   updated_at: string;
 }
+export interface PortfolioPageRow {
+  id: string;
+
+  slug: string;
+  title: string;
+  eyebrow: string | null;
+  subtitle: string | null;
+  description: string | null;
+
+  primary_color: string;
+  secondary_color: string;
+  accent_color: string;
+
+  background_style: string;
+  layout_style: string;
+
+  order_index: number;
+  is_published: boolean;
+
+  created_at: string;
+  updated_at: string;
+}

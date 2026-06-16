@@ -10,6 +10,7 @@ import { usePortfolioStats } from "../../hooks/usePortfolioStats";
 import { useContactLinks } from "../../hooks/useContactLinks";
 import { useSkills } from "../../hooks/useSkills";
 import { useFeaturedProjects } from "../../hooks/useFeaturedProjects";
+import { usePortfolioPages } from "../../hooks/usePortfolioPages";
 import {
   contactLinks,
   projects,
@@ -22,6 +23,21 @@ import {
 import styles from "./styles.module.css";
 
 export function HomePage() {
+  const {
+    portfolioPages,
+    isLoading: isLoadingPortfolioPages,
+    errorMessage: portfolioPagesErrorMessage,
+  } = usePortfolioPages();
+
+  const homePortfolioAreas =
+  portfolioPages.length > 0
+    ? portfolioPages.map((page) => ({
+        title: page.title,
+        description: page.description ?? page.subtitle ?? "",
+        href: `/${page.slug}`,
+      }))
+    : portfolioAreas;
+
 
   const {
     siteSettings,
@@ -247,7 +263,7 @@ const homeFeaturedProjects =
         />
 
         <div className={styles.areaGrid}>
-          {portfolioAreas.map((area) => (
+          {homePortfolioAreas.map((area) => (
             <AreaCard
               key={area.href}
               title={area.title}

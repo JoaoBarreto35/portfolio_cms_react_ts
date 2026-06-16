@@ -125,3 +125,20 @@ export interface PortfolioPageRow {
   created_at: string;
   updated_at: string;
 }
+export interface PortfolioPageHighlightRow {
+  id: string;
+
+  page_id: string;
+
+  label: string;
+  description: string | null;
+
+  icon_name: string | null;
+  color: string;
+
+  order_index: number;
+  is_visible: boolean;
+
+  created_at: string;
+  updated_at: string;
+}

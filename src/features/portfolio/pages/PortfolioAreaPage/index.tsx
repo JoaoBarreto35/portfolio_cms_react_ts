@@ -1,6 +1,7 @@
 import type { PortfolioAreaSlug } from "../../../../types/portfolio";
 import { ProjectCard } from "../../components/ProjectCard";
 import { EmptyState } from "../../../../components/ui/EmptyState";
+import { usePortfolioAreaContent } from "../../hooks/usePortfolioAreaContent";
 
 import {
   projects,
@@ -14,7 +15,28 @@ interface PortfolioAreaPageProps {
 }
 
 export function PortfolioAreaPage({ areaSlug }: PortfolioAreaPageProps) {
-  const content = portfolioAreaContents[areaSlug];
+  const {
+    portfolioPage,
+    highlights,
+    isLoading,
+    errorMessage,
+  } = usePortfolioAreaContent(areaSlug);
+
+  const localAreaContent = portfolioAreaContents[areaSlug];
+
+  const areaContent = {
+    eyebrow: portfolioPage?.eyebrow ?? localAreaContent.eyebrow,
+    title: portfolioPage?.title ?? localAreaContent.title,
+    description:
+      portfolioPage?.description ??
+      portfolioPage?.subtitle ??
+      localAreaContent.description,
+    highlights:
+      highlights.length > 0
+        ? highlights.map((highlight) => highlight.label)
+        : localAreaContent.highlights,
+  };
+
 
   const areaProjects = projects.filter((project) =>
     project.areaSlugs.includes(areaSlug),
@@ -23,14 +45,14 @@ export function PortfolioAreaPage({ areaSlug }: PortfolioAreaPageProps) {
   return (
     <div className={`${styles.page} ${styles[areaSlug]}`}>
       <section className={styles.hero}>
-        <p className={styles.eyebrow}>{content.eyebrow}</p>
+        <p className={styles.eyebrow}>{areaContent.eyebrow}</p>
 
-        <h1>{content.title}</h1>
+        <h1>{areaContent.title}</h1>
 
-        <p className={styles.description}>{content.description}</p>
+        <p className={styles.description}>{areaContent.description}</p>
 
         <div className={styles.highlights}>
-          {content.highlights.map((highlight) => (
+          {areaContent.highlights.map((highlight) => (
             <span key={highlight}>{highlight}</span>
           ))}
         </div>

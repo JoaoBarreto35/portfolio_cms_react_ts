@@ -44,3 +44,20 @@ export interface PortfolioStatRow {
   updated_at: string;
 }
 
+export interface ContactLinkRow {
+  id: string;
+
+  label: string;
+  description: string | null;
+  href: string;
+
+  contact_type: string;
+  icon_name: string | null;
+  color: string;
+
+  order_index: number;
+  is_published: boolean;
+
+  created_at: string;
+  updated_at: string;
+}

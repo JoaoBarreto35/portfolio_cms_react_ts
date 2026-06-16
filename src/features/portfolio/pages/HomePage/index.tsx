@@ -7,6 +7,7 @@ import { SkillCard } from "../../components/SkillCard";
 import { ContactCard } from "../../components/ContactCard";
 import { useSiteSettings } from "../../hooks/useSiteSettings";
 import { usePortfolioStats } from "../../hooks/usePortfolioStats";
+import { useContactLinks } from "../../hooks/useContactLinks";
 import {
   contactLinks,
   projects,
@@ -55,7 +56,22 @@ export function HomePage() {
     siteSettings?.bio ??
     "Crio aplicações web, dashboards, automações e projetos digitais com foco em organização, clareza e utilidade prática.";
 
-  const featuredProjects = projects.filter((project) => project.featured);
+  
+    const {
+      contactLinks: supabaseContactLinks,
+      isLoading: isLoadingContactLinks,
+      errorMessage: contactLinksErrorMessage,
+    } = useContactLinks();
+        
+    const homeContactLinks =
+      supabaseContactLinks.length > 0
+        ? supabaseContactLinks.map((contactLink) => ({
+            label: contactLink.label,
+            description: contactLink.description ?? "",
+            href: contactLink.href,
+          }))
+        : contactLinks;
+    const featuredProjects = projects.filter((project) => project.featured);
 
   return (
     <div className={styles.page}>
@@ -104,14 +120,14 @@ export function HomePage() {
           />
         ))}
         {isLoadingPortfolioStats && (
-  <p className={styles.helperText}>Carregando destaques...</p>
-)}
+          <p className={styles.helperText}>Carregando destaques...</p>
+        )}
 
-{!isLoadingPortfolioStats && portfolioStatsErrorMessage && (
-  <p className={styles.helperText}>
-    Destaques locais em uso enquanto o Supabase não responde.
-  </p>
-)}
+        {!isLoadingPortfolioStats && portfolioStatsErrorMessage && (
+          <p className={styles.helperText}>
+            Destaques locais em uso enquanto o Supabase não responde.
+          </p>
+        )}
       </section>
 
 
@@ -186,15 +202,15 @@ export function HomePage() {
         <SectionHeader
           eyebrow="Contato"
           title="Vamos conversar sobre projetos, dados, automações ou oportunidades."
-          description="Esta seção futuramente será alimentada pelas configurações gerais do portfólio no Supabase."
+          description="Aqui estão alguns links onde poderá me encontrar."
         />
         <div className={styles.contactGrid}>
-          {contactLinks.map((contact) => (
+          {homeContactLinks.map((contactLink) => (
             <ContactCard
-              key={contact.label}
-              label={contact.label}
-              description={contact.description}
-              href={contact.href}
+              key={contactLink.href}
+              label={contactLink.label}
+              description={contactLink.description}
+              href={contactLink.href}
             />
           ))}
         </div>

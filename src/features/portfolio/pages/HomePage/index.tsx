@@ -13,6 +13,8 @@ import { useFeaturedProjects } from "../../hooks/useFeaturedProjects";
 import { usePortfolioPages } from "../../hooks/usePortfolioPages";
 import { ExperienceCard } from "../../components/ExperienceCard";
 import { useExperiences } from "../../hooks/useExperiences";
+import { EducationCard } from "../../components/EducationCard";
+import { useEducation } from "../../hooks/useEducation";
 import {
   contactLinks,
   projects,
@@ -25,6 +27,14 @@ import {
 import styles from "./styles.module.css";
 
 export function HomePage() {
+  const {
+    educationItems,
+    isLoading: isLoadingEducation,
+    errorMessage: educationErrorMessage,
+  } = useEducation();
+  
+  const shouldShowEducationSection =
+    educationItems.length > 0 || isLoadingEducation || Boolean(educationErrorMessage);
   const {
     experiences,
     isLoading: isLoadingExperiences,
@@ -274,6 +284,39 @@ export function HomePage() {
           </p>
         )}
       </section>
+      {shouldShowEducationSection && (
+  <section className={styles.education}>
+    <SectionHeader
+      eyebrow="Formação"
+      title="Base acadêmica e aprendizado contínuo"
+      description="Cursos, formação técnica e graduação conectados ao desenvolvimento de software, dados e processos."
+    />
+
+    <div className={styles.educationGrid}>
+      {educationItems.map((educationItem) => (
+        <EducationCard
+          key={educationItem.id}
+          title={educationItem.title}
+          institution={educationItem.institution}
+          educationType={educationItem.education_type}
+          description={educationItem.description}
+          certificateUrl={educationItem.certificate_url}
+          isCurrent={educationItem.is_current}
+        />
+      ))}
+    </div>
+
+    {isLoadingEducation && (
+      <p className={styles.helperText}>Carregando formações...</p>
+    )}
+
+    {!isLoadingEducation && educationErrorMessage && (
+      <p className={styles.helperText}>
+        Formações ainda não carregadas do Supabase.
+      </p>
+    )}
+  </section>
+)}
 
 
       <section className={styles.skills}>

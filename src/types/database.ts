@@ -232,3 +232,23 @@ export interface ExperienceRow {
   created_at: string;
   updated_at: string;
 }
+export interface EducationRow {
+  id: string;
+
+  title: string;
+  institution: string;
+  education_type: string;
+
+  start_date: string | null;
+  end_date: string | null;
+  is_current: boolean;
+
+  description: string | null;
+  certificate_url: string | null;
+
+  order_index: number;
+  is_published: boolean;
+
+  created_at: string;
+  updated_at: string;
+}

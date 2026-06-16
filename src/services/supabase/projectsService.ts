@@ -1,5 +1,6 @@
 import { supabase } from "./supabaseClient";
 import type { ProjectSummaryRow } from "../../types/database";
+import type { PortfolioAreaSlug } from "../../types/portfolio";
 
 interface ProjectTechnologyQueryResult {
   order_index: number;
@@ -25,6 +26,12 @@ interface ProjectQueryResult {
     name: string;
   } | null;
   project_technologies: ProjectTechnologyQueryResult[];
+}
+
+interface PortfolioPageProjectQueryResult {
+  order_index: number;
+  highlight_label: string | null;
+  projects: ProjectQueryResult | null;
 }
 
 function mapProject(project: ProjectQueryResult): ProjectSummaryRow {
@@ -94,4 +101,60 @@ export async function getFeaturedProjects(): Promise<ProjectSummaryRow[]> {
   }
 
   return ((data ?? []) as ProjectQueryResult[]).map(mapProject);
+}
+
+export async function getProjectsByPortfolioPageSlug(
+  pageSlug: PortfolioAreaSlug
+): Promise<ProjectSummaryRow[]> {
+  if (!supabase) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from("portfolio_page_projects")
+    .select(
+      `
+        order_index,
+        highlight_label,
+        portfolio_pages!inner (
+          slug
+        ),
+        projects!inner (
+          id,
+          title,
+          slug,
+          short_description,
+          status,
+          cover_image_url,
+          is_featured,
+          is_published,
+          order_index,
+          created_at,
+          updated_at,
+          project_categories (
+            name
+          ),
+          project_technologies (
+            order_index,
+            is_visible,
+            technologies (
+              name
+            )
+          )
+        )
+      `
+    )
+    .eq("is_visible", true)
+    .eq("portfolio_pages.slug", pageSlug)
+    .eq("projects.is_published", true)
+    .order("order_index", { ascending: true });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return ((data ?? []) as PortfolioPageProjectQueryResult[])
+    .map((item) => item.projects)
+    .filter((project): project is ProjectQueryResult => Boolean(project))
+    .map(mapProject);
 }

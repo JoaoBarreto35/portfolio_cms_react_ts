@@ -2,6 +2,8 @@ import type { PortfolioAreaSlug } from "../../../../types/portfolio";
 import { ProjectCard } from "../../components/ProjectCard";
 import { EmptyState } from "../../../../components/ui/EmptyState";
 import { usePortfolioAreaContent } from "../../hooks/usePortfolioAreaContent";
+import { usePortfolioAreaProjects } from "../../hooks/usePortfolioAreaProjects";
+
 
 import {
   projects,
@@ -15,6 +17,12 @@ interface PortfolioAreaPageProps {
 }
 
 export function PortfolioAreaPage({ areaSlug }: PortfolioAreaPageProps) {
+  const {
+    areaProjects: supabaseAreaProjects,
+    isLoading: isLoadingAreaProjects,
+    errorMessage: areaProjectsErrorMessage,
+  } = usePortfolioAreaProjects(areaSlug);
+
   const {
     portfolioPage,
     highlights,
@@ -38,9 +46,25 @@ export function PortfolioAreaPage({ areaSlug }: PortfolioAreaPageProps) {
   };
 
 
-  const areaProjects = projects.filter((project) =>
-    project.areaSlugs.includes(areaSlug),
-  );
+  const localAreaProjects = projects.filter((project) =>
+  project.areaSlugs.includes(areaSlug)
+);
+
+const areaProjects =
+  supabaseAreaProjects.length > 0
+    ? supabaseAreaProjects.map((project) => ({
+        title: project.title,
+        slug: project.slug,
+        description: project.short_description,
+        category: project.category,
+        status: project.status,
+        technologies: project.technologies,
+        coverImageUrl: project.cover_image_url,
+        areaSlugs: [areaSlug],
+        featured: project.is_featured,
+      }))
+    : localAreaProjects;
+
 
   return (
     <div className={`${styles.page} ${styles[areaSlug]}`}>

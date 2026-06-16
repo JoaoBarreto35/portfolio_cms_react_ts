@@ -5,6 +5,7 @@ import { StatusCard } from "../../components/StatusCard";
 import { AreaCard } from "../../components/AreaCard";
 import { SkillCard } from "../../components/SkillCard";
 import { ContactCard } from "../../components/ContactCard";
+import { useSiteSettings } from "../../hooks/useSiteSettings";
 import {
   contactLinks,
   projects,
@@ -18,23 +19,36 @@ import styles from "./styles.module.css";
 
 export function HomePage() {
 
+  const { siteSettings, isLoading, errorMessage } = useSiteSettings();
+
+  const heroName = siteSettings?.name ?? "João Barreto";
+  const heroHeadline =
+    siteSettings?.headline ?? "Desenvolvedor Full Stack & Analista de Dados";
+
+  const heroSubtitle =
+    siteSettings?.subtitle ??
+    "Sistemas, dashboards e automações para resolver problemas reais.";
+
+  const heroBio =
+    siteSettings?.bio ??
+    "Crio aplicações web, dashboards, automações e projetos digitais com foco em organização, clareza e utilidade prática.";
+
   const featuredProjects = projects.filter((project) => project.featured);
 
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
-        <p className={styles.eyebrow}>Portfolio CMS pessoal</p>
+        <p className={styles.eyebrow}>{heroName}</p>
 
         <h1>
-          João Barreto <br></br>
-          Transformo seus problemas em soluções digitais.
+          {heroHeadline}
         </h1>
 
         <p className={styles.description}>
-          Este portfólio está sendo reconstruído como uma plataforma editável,
-          onde projetos, experiências, cursos, tecnologias, imagens e páginas
-          específicas poderão ser gerenciados por uma central administrativa.
+        {heroSubtitle}
         </p>
+
+        {/* <p className={styles.heroBio}>{heroBio}</p> */}
 
         <div className={styles.actions}>
           <ButtonLink to="/web">Ver projetos web</ButtonLink>
@@ -42,6 +56,18 @@ export function HomePage() {
           <ButtonLink to="/admin" variant="secondary">
             Acessar central
           </ButtonLink>
+
+          <div className={styles.dataStatus}>
+  {isLoading && <span>Carregando dados do portfólio...</span>}
+
+  {!isLoading && errorMessage && (
+    <span>Usando dados locais enquanto o Supabase não responde.</span>
+  )}
+
+  {!isLoading && !errorMessage && siteSettings && (
+    <span>Conteúdo carregado do Supabase.</span>
+  )}
+</div>
         </div>
       </section>
 

@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 
 import { Badge } from "../../../../components/ui/Badge";
+import { getProjectStatusBadgeVariant } from "../../utils/getProjectStatusBadgeVariant";
+
 import { ButtonLink } from "../../../../components/ui/ButtonLink";
 import { projectDetailsBySlug } from "../../data/mockPortfolioData";
 
@@ -40,7 +42,9 @@ export function ProjectDetailsPage() {
             <p className={styles.subtitle}>{project.subtitle}</p>
           </div>
 
-          <Badge variant="success">{project.status}</Badge>
+          <Badge variant={getProjectStatusBadgeVariant(project.status)}>
+            {project.status}
+          </Badge>
         </div>
       </section>
 

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
 import { Badge } from "../../../../components/ui/Badge";
+import { getProjectStatusBadgeVariant } from "../../utils/getProjectStatusBadgeVariant";
+
 
 import styles from "./styles.module.css";
 
@@ -41,7 +43,7 @@ export function ProjectCard({
             {category}
           </Badge>
 
-          <Badge variant="success" size="sm">
+          <Badge variant={getProjectStatusBadgeVariant(status)} size="sm">
             {status}
           </Badge>
         </div>

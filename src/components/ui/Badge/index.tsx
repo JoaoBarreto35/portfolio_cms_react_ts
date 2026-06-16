@@ -2,7 +2,14 @@ import type { ReactNode } from "react";
 
 import styles from "./styles.module.css";
 
-type BadgeVariant = "default" | "primary" | "success" | "warning" | "danger" | "purple";
+export type BadgeVariant =
+  | "default"
+  | "primary"
+  | "success"
+  | "warning"
+  | "danger"
+  | "purple";
+
 type BadgeSize = "sm" | "md";
 
 interface BadgeProps {

@@ -1,5 +1,7 @@
 import type { PortfolioAreaSlug } from "../../../../types/portfolio";
 import { ProjectCard } from "../../components/ProjectCard";
+import { EmptyState } from "../../../../components/ui/EmptyState";
+
 import {
   projects,
   portfolioAreaContents,
@@ -60,13 +62,11 @@ export function PortfolioAreaPage({ areaSlug }: PortfolioAreaPageProps) {
             ))}
           </div>
         ) : (
-          <div className={styles.emptyState}>
-            <p>Nenhum projeto cadastrado ainda</p>
-            <span>
-              Esta área já está preparada para receber projetos. Em breve vamos
-              cadastrar projetos específicos para ela.
-            </span>
-          </div>
+          <EmptyState
+            eyebrow="Nenhum projeto cadastrado ainda"
+            title="Esta vitrine já está pronta para receber projetos."
+            description="Em breve vamos cadastrar projetos específicos para esta área. Depois, essa lista será alimentada diretamente pelo Supabase."
+          />
         )}
       </section>
     </div>

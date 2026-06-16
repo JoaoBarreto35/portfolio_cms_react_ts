@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-
 import { Badge } from "../../../../components/ui/Badge";
 import { getProjectStatusBadgeVariant } from "../../utils/getProjectStatusBadgeVariant";
-
 import { ButtonLink } from "../../../../components/ui/ButtonLink";
+import { EmptyState } from "../../../../components/ui/EmptyState";
+
 import { projectDetailsBySlug } from "../../data/mockPortfolioData";
 
 import styles from "./styles.module.css";
@@ -15,21 +15,19 @@ export function ProjectDetailsPage() {
 
   if (!project) {
     return (
-      <div className={styles.notFound}>
-        <p className={styles.eyebrow}>Projeto não encontrado</p>
-
-        <h1>Esse projeto ainda não existe no portfólio.</h1>
-
-        <p>
-          O projeto pode não ter sido cadastrado ainda ou o endereço pode estar incorreto.
-        </p>
-
-        <ButtonLink to="/" variant="secondary">
-          Voltar para a Home
-        </ButtonLink>
-      </div>
+      <EmptyState
+        eyebrow="Projeto não encontrado"
+        title="Esse projeto ainda não existe no portfólio."
+        description="O projeto pode não ter sido cadastrado ainda ou o endereço pode estar incorreto."
+        action={{
+          label: "Voltar para a Home",
+          to: "/",
+          variant: "secondary",
+        }}
+      />
     );
   }
+  
 
   return (
     <div className={styles.page}>

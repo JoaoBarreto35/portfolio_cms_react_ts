@@ -1,0 +1,80 @@
+
+.emptyState {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border: 1px dashed var(--area-border, var(--color-border));
+    border-radius: var(--radius-2xl);
+    background: var(--area-soft, var(--color-surface-soft));
+  }
+  
+  .left {
+    text-align: left;
+  }
+  
+  .center {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .eyebrow {
+    margin: 0;
+    color: var(--area-color, var(--color-primary));
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  
+  .emptyState h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+  
+  .description {
+    max-width: 680px;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+  
+  .description p {
+    margin: 0;
+  }
+  
+  .center .description {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .action {
+    display: flex;
+    margin-top: var(--space-2);
+  }
+  
+  .center .action {
+    justify-content: center;
+  }
+  
+  @media (max-width: 620px) {
+    .emptyState {
+      padding: var(--space-5);
+    }
+  
+    .center {
+      text-align: left;
+    }
+  
+    .center .description {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  
+    .center .action {
+      justify-content: flex-start;
+    }
+  }
+  

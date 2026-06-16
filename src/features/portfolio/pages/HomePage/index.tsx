@@ -9,6 +9,7 @@ import { useSiteSettings } from "../../hooks/useSiteSettings";
 import { usePortfolioStats } from "../../hooks/usePortfolioStats";
 import { useContactLinks } from "../../hooks/useContactLinks";
 import { useSkills } from "../../hooks/useSkills";
+import { useFeaturedProjects } from "../../hooks/useFeaturedProjects";
 import {
   contactLinks,
   projects,
@@ -108,9 +109,27 @@ export function HomePage() {
         )
       )
       : skillGroups;
+  const {
+    featuredProjects: supabaseFeaturedProjects,
+    isLoading: isLoadingFeaturedProjects,
+    errorMessage: featuredProjectsErrorMessage,
+  } = useFeaturedProjects();
 
 
-  const featuredProjects = projects.filter((project) => project.featured);
+  const localFeaturedProjects = projects.filter((project) => project.featured);
+
+const homeFeaturedProjects =
+  supabaseFeaturedProjects.length > 0
+    ? supabaseFeaturedProjects.map((project) => ({
+        title: project.title,
+        slug: project.slug,
+        description: project.short_description,
+        category: project.category,
+        status: project.status,
+        technologies: project.technologies,
+        coverImageUrl: project.cover_image_url,
+      }))
+    : localFeaturedProjects;
 
   return (
     <div className={styles.page}>
@@ -174,23 +193,24 @@ export function HomePage() {
         <SectionHeader
           eyebrow="Projetos em destaque"
           title="Projetos que mostram aplicação real de tecnologia."
-          description="Nesta primeira versão, os projetos ainda estão mockados. Depois eles serão carregados diretamente do Supabase."
+          description="Confira meus atuais projetos em destaque, garanto que não irá se decepcionar"
         />
 
-        <div className={styles.projectGrid}>
-          {featuredProjects.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              title={project.title}
-              slug={project.slug}
-              description={project.description}
-              category={project.category}
-              status={project.status}
-              technologies={project.technologies}
-              coverImageUrl={project.coverImageUrl}
-            />
-          ))}
-        </div>
+<div className={styles.projectGrid}>
+  {homeFeaturedProjects.map((project) => (
+    <ProjectCard
+      key={project.slug}
+      title={project.title}
+      slug={project.slug}
+      description={project.description}
+      category={project.category}
+      status={project.status}
+      technologies={project.technologies}
+      coverImageUrl={project.coverImageUrl}
+    />
+  ))}
+</div>
+
 
         <div className={styles.featuredActions}>
           <ButtonLink to="/web" variant="secondary">

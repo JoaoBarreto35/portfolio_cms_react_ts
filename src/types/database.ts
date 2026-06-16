@@ -82,3 +82,24 @@ export interface SkillRow {
   created_at: string;
   updated_at: string;
 }
+export interface ProjectSummaryRow {
+  id: string;
+
+  title: string;
+  slug: string;
+  short_description: string;
+
+  category: string;
+  status: string;
+
+  technologies: string[];
+  cover_image_url: string | null;
+
+  is_featured: boolean;
+  is_published: boolean;
+
+  order_index: number;
+
+  created_at: string;
+  updated_at: string;
+}

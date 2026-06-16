@@ -6,6 +6,7 @@ import { AreaCard } from "../../components/AreaCard";
 import { SkillCard } from "../../components/SkillCard";
 import { ContactCard } from "../../components/ContactCard";
 import { useSiteSettings } from "../../hooks/useSiteSettings";
+import { usePortfolioStats } from "../../hooks/usePortfolioStats";
 import {
   contactLinks,
   projects,
@@ -19,7 +20,28 @@ import styles from "./styles.module.css";
 
 export function HomePage() {
 
-  const { siteSettings, isLoading, errorMessage } = useSiteSettings();
+  const {
+    siteSettings,
+    isLoading: isLoadingSiteSettings,
+    errorMessage: siteSettingsErrorMessage,
+  } = useSiteSettings();
+
+  const {
+    portfolioStats,
+    isLoading: isLoadingPortfolioStats,
+    errorMessage: portfolioStatsErrorMessage,
+  } = usePortfolioStats();
+
+  const statusItems =
+    portfolioStats.length > 0
+      ? portfolioStats.map((stat) => ({
+        label: stat.label,
+        value: stat.value,
+        description: stat.description ?? "",
+      }))
+      : portfolioStatusItems;
+
+
 
   const heroName = siteSettings?.name ?? "João Barreto";
   const heroHeadline =
@@ -45,7 +67,7 @@ export function HomePage() {
         </h1>
 
         <p className={styles.description}>
-        {heroSubtitle}
+          {heroSubtitle}
         </p>
 
         {/* <p className={styles.heroBio}>{heroBio}</p> */}
@@ -58,28 +80,40 @@ export function HomePage() {
           </ButtonLink>
 
           <div className={styles.dataStatus}>
-  {isLoading && <span>Carregando dados do portfólio...</span>}
+            {isLoadingSiteSettings && <span>Carregando dados do portfólio...</span>}
 
-  {!isLoading && errorMessage && (
-    <span>Usando dados locais enquanto o Supabase não responde.</span>
-  )}
+            {!isLoadingSiteSettings && siteSettingsErrorMessage && (
+              <span>Usando dados locais enquanto o Supabase não responde.</span>
+            )}
 
-  {!isLoading && !errorMessage && siteSettings && (
-    <span>Conteúdo carregado do Supabase.</span>
-  )}
-</div>
+            {!isLoadingSiteSettings && !siteSettingsErrorMessage && siteSettings && (
+              <span>Conteúdo carregado do Supabase.</span>
+            )}
+
+          </div>
         </div>
       </section>
 
-      <section className={styles.statusGrid} aria-label="Resumo do projeto">
-        {portfolioStatusItems.map((item) => (
+      <section className={styles.statusGrid}>
+        {statusItems.map((item) => (
           <StatusCard
-            key={item.title}
-            title={item.title}
+            key={item.label}
+            label={item.label}
+            value={item.value}
             description={item.description}
           />
         ))}
+        {isLoadingPortfolioStats && (
+  <p className={styles.helperText}>Carregando destaques...</p>
+)}
+
+{!isLoadingPortfolioStats && portfolioStatsErrorMessage && (
+  <p className={styles.helperText}>
+    Destaques locais em uso enquanto o Supabase não responde.
+  </p>
+)}
       </section>
+
 
       <section className={styles.featuredProjects}>
         <SectionHeader

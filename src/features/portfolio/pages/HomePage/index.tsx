@@ -8,6 +8,7 @@ import { ContactCard } from "../../components/ContactCard";
 import { useSiteSettings } from "../../hooks/useSiteSettings";
 import { usePortfolioStats } from "../../hooks/usePortfolioStats";
 import { useContactLinks } from "../../hooks/useContactLinks";
+import { useSkills } from "../../hooks/useSkills";
 import {
   contactLinks,
   projects,
@@ -56,22 +57,60 @@ export function HomePage() {
     siteSettings?.bio ??
     "Crio aplicações web, dashboards, automações e projetos digitais com foco em organização, clareza e utilidade prática.";
 
-  
-    const {
-      contactLinks: supabaseContactLinks,
-      isLoading: isLoadingContactLinks,
-      errorMessage: contactLinksErrorMessage,
-    } = useContactLinks();
-        
-    const homeContactLinks =
-      supabaseContactLinks.length > 0
-        ? supabaseContactLinks.map((contactLink) => ({
-            label: contactLink.label,
-            description: contactLink.description ?? "",
-            href: contactLink.href,
-          }))
-        : contactLinks;
-    const featuredProjects = projects.filter((project) => project.featured);
+
+  const {
+    contactLinks: supabaseContactLinks,
+    isLoading: isLoadingContactLinks,
+    errorMessage: contactLinksErrorMessage,
+  } = useContactLinks();
+
+  const homeContactLinks =
+    supabaseContactLinks.length > 0
+      ? supabaseContactLinks.map((contactLink) => ({
+        label: contactLink.label,
+        description: contactLink.description ?? "",
+        href: contactLink.href,
+      }))
+      : contactLinks;
+
+  const {
+    skills: supabaseSkills,
+    isLoading: isLoadingSkills,
+    errorMessage: skillsErrorMessage,
+  } = useSkills();
+
+  interface HomeSkillGroup {
+    title: string;
+    description: string;
+    skills: string[];
+  }
+
+  const homeSkillGroups =
+    supabaseSkills.length > 0
+      ? Object.values(
+        supabaseSkills.reduce<Record<string, HomeSkillGroup>>(
+          (accumulator, skill) => {
+            const groupName = skill.group_name;
+
+            if (!accumulator[groupName]) {
+              accumulator[groupName] = {
+                title: groupName,
+                description: `Competências relacionadas a ${groupName.toLowerCase()}.`,
+                skills: [],
+              };
+            }
+
+            accumulator[groupName].skills.push(skill.name);
+
+            return accumulator;
+          },
+          {}
+        )
+      )
+      : skillGroups;
+
+
+  const featuredProjects = projects.filter((project) => project.featured);
 
   return (
     <div className={styles.page}>
@@ -164,19 +203,20 @@ export function HomePage() {
         <SectionHeader
           eyebrow="Habilidades"
           title="Tecnologias e competências que conectam desenvolvimento, dados e operação."
-          description="Essa seção também será dinâmica futuramente, permitindo cadastrar novas habilidades pela central administrativa."
+          description="Algumas das principais habilidades que desenvolvi durante meus estudos ou durante minha expriência em projetos desenvolvidos."
         />
 
         <div className={styles.skillGrid}>
-          {skillGroups.map((group) => (
+          {homeSkillGroups.map((skillGroup) => (
             <SkillCard
-              key={group.title}
-              title={group.title}
-              description={group.description}
-              skills={group.skills}
+              key={skillGroup.title}
+              title={skillGroup.title}
+              description={skillGroup.description}
+              skills={skillGroup.skills}
             />
           ))}
         </div>
+
 
       </section>
 

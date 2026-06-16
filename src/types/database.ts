@@ -61,3 +61,24 @@ export interface ContactLinkRow {
   created_at: string;
   updated_at: string;
 }
+export interface SkillRow {
+  id: string;
+
+  name: string;
+  slug: string;
+
+  group_name: string;
+  description: string | null;
+
+  level_label: string | null;
+  level_value: number | null;
+
+  icon_name: string | null;
+  color: string;
+
+  order_index: number;
+  is_published: boolean;
+
+  created_at: string;
+  updated_at: string;
+}

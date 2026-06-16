@@ -150,4 +150,14 @@
     color: var(--color-text-muted);
     font-size: 0.85rem;
   }
+  .experiences {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .experienceGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
   

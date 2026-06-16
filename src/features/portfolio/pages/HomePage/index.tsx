@@ -11,6 +11,8 @@ import { useContactLinks } from "../../hooks/useContactLinks";
 import { useSkills } from "../../hooks/useSkills";
 import { useFeaturedProjects } from "../../hooks/useFeaturedProjects";
 import { usePortfolioPages } from "../../hooks/usePortfolioPages";
+import { ExperienceCard } from "../../components/ExperienceCard";
+import { useExperiences } from "../../hooks/useExperiences";
 import {
   contactLinks,
   projects,
@@ -24,19 +26,24 @@ import styles from "./styles.module.css";
 
 export function HomePage() {
   const {
+    experiences,
+    isLoading: isLoadingExperiences,
+    errorMessage: experiencesErrorMessage,
+  } = useExperiences();
+  const {
     portfolioPages,
     isLoading: isLoadingPortfolioPages,
     errorMessage: portfolioPagesErrorMessage,
   } = usePortfolioPages();
 
   const homePortfolioAreas =
-  portfolioPages.length > 0
-    ? portfolioPages.map((page) => ({
+    portfolioPages.length > 0
+      ? portfolioPages.map((page) => ({
         title: page.title,
         description: page.description ?? page.subtitle ?? "",
         href: `/${page.slug}`,
       }))
-    : portfolioAreas;
+      : portfolioAreas;
 
 
   const {
@@ -134,9 +141,9 @@ export function HomePage() {
 
   const localFeaturedProjects = projects.filter((project) => project.featured);
 
-const homeFeaturedProjects =
-  supabaseFeaturedProjects.length > 0
-    ? supabaseFeaturedProjects.map((project) => ({
+  const homeFeaturedProjects =
+    supabaseFeaturedProjects.length > 0
+      ? supabaseFeaturedProjects.map((project) => ({
         title: project.title,
         slug: project.slug,
         description: project.short_description,
@@ -145,7 +152,7 @@ const homeFeaturedProjects =
         technologies: project.technologies,
         coverImageUrl: project.cover_image_url,
       }))
-    : localFeaturedProjects;
+      : localFeaturedProjects;
 
   return (
     <div className={styles.page}>
@@ -212,20 +219,20 @@ const homeFeaturedProjects =
           description="Confira meus atuais projetos em destaque, garanto que não irá se decepcionar"
         />
 
-<div className={styles.projectGrid}>
-  {homeFeaturedProjects.map((project) => (
-    <ProjectCard
-      key={project.slug}
-      title={project.title}
-      slug={project.slug}
-      description={project.description}
-      category={project.category}
-      status={project.status}
-      technologies={project.technologies}
-      coverImageUrl={project.coverImageUrl}
-    />
-  ))}
-</div>
+        <div className={styles.projectGrid}>
+          {homeFeaturedProjects.map((project) => (
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              slug={project.slug}
+              description={project.description}
+              category={project.category}
+              status={project.status}
+              technologies={project.technologies}
+              coverImageUrl={project.coverImageUrl}
+            />
+          ))}
+        </div>
 
 
         <div className={styles.featuredActions}>
@@ -234,6 +241,40 @@ const homeFeaturedProjects =
           </ButtonLink>
         </div>
       </section>
+      <section className={styles.experiences}>
+        <SectionHeader
+          eyebrow="Trajetória"
+          title="Experiência prática conectada à tecnologia"
+          description="Uma combinação de vivência operacional, análise de dados, planejamento e desenvolvimento de soluções digitais."
+        />
+
+        <div className={styles.experienceGrid}>
+          {experiences.map((experience) => (
+            <ExperienceCard
+              key={experience.id}
+              company={experience.company}
+              role={experience.role}
+              employmentType={experience.employment_type}
+              location={experience.location}
+              description={experience.description}
+              highlights={experience.highlights}
+              tools={experience.tools}
+              isCurrent={experience.is_current}
+            />
+          ))}
+        </div>
+
+        {isLoadingExperiences && (
+          <p className={styles.helperText}>Carregando experiências...</p>
+        )}
+
+        {!isLoadingExperiences && experiencesErrorMessage && (
+          <p className={styles.helperText}>
+            Experiências ainda não carregadas do Supabase.
+          </p>
+        )}
+      </section>
+
 
       <section className={styles.skills}>
         <SectionHeader

@@ -210,3 +210,25 @@ export interface ProjectDetailsRow {
   created_at: string;
   updated_at: string;
 }
+export interface ExperienceRow {
+  id: string;
+
+  company: string;
+  role: string;
+  employment_type: string | null;
+  location: string | null;
+
+  start_date: string | null;
+  end_date: string | null;
+  is_current: boolean;
+
+  description: string | null;
+  highlights: string[];
+  tools: string[];
+
+  order_index: number;
+  is_published: boolean;
+
+  created_at: string;
+  updated_at: string;
+}

@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom";
 import { Badge } from "../../../../components/ui/Badge";
-import { getProjectStatusBadgeVariant } from "../../utils/getProjectStatusBadgeVariant";
-import { ButtonLink } from "../../../../components/ui/ButtonLink";
 import { EmptyState } from "../../../../components/ui/EmptyState";
-
+import { getProjectStatusBadgeVariant } from "../../utils/getProjectStatusBadgeVariant";
+import { useProjectDetails } from "../../hooks/useProjectDetails";
 import { projectDetailsBySlug } from "../../data/mockPortfolioData";
 
 import styles from "./styles.module.css";
@@ -11,7 +10,44 @@ import styles from "./styles.module.css";
 export function ProjectDetailsPage() {
   const { projectSlug } = useParams();
 
-  const project = projectSlug ? projectDetailsBySlug[projectSlug] : null;
+  const {
+    projectDetails: supabaseProjectDetails,
+    isLoading,
+    errorMessage,
+  } = useProjectDetails(projectSlug);
+
+  const localProject = projectSlug ? projectDetailsBySlug[projectSlug] : null;
+
+  const project = supabaseProjectDetails
+    ? {
+        title: supabaseProjectDetails.title,
+        slug: supabaseProjectDetails.slug,
+        subtitle:
+          supabaseProjectDetails.subtitle ??
+          supabaseProjectDetails.short_description,
+        category: supabaseProjectDetails.category,
+        year: supabaseProjectDetails.project_year
+          ? String(supabaseProjectDetails.project_year)
+          : "Em evolução",
+        status: supabaseProjectDetails.status,
+        role: supabaseProjectDetails.role ?? "Desenvolvedor",
+        technologies: supabaseProjectDetails.technologies,
+        problem:
+          supabaseProjectDetails.problem ?? "Problema ainda não detalhado.",
+        solution:
+          supabaseProjectDetails.solution ?? "Solução ainda não detalhada.",
+        impact: supabaseProjectDetails.impact ?? "Impacto ainda não detalhado.",
+        coverImageUrl: supabaseProjectDetails.cover_image_url,
+        links: supabaseProjectDetails.links,
+        images: supabaseProjectDetails.images,
+      }
+    : localProject
+      ? {
+          ...localProject,
+          links: [],
+          images: [],
+        }
+      : null;
 
   if (!project) {
     return (
@@ -27,7 +63,6 @@ export function ProjectDetailsPage() {
       />
     );
   }
-  
 
   return (
     <div className={styles.page}>
@@ -44,6 +79,18 @@ export function ProjectDetailsPage() {
             {project.status}
           </Badge>
         </div>
+
+        {isLoading && (
+          <p className={styles.helperText}>
+            Carregando detalhes do projeto...
+          </p>
+        )}
+
+        {!isLoading && errorMessage && (
+          <p className={styles.helperText}>
+            Detalhes locais em uso enquanto o Supabase não responde.
+          </p>
+        )}
       </section>
 
       <section className={styles.metaGrid} aria-label="Informações do projeto">
@@ -108,6 +155,45 @@ export function ProjectDetailsPage() {
           ))}
         </div>
       </section>
+
+      {project.links.length > 0 && (
+        <section className={styles.linksSection}>
+          <h2>Links do projeto</h2>
+
+          <div className={styles.projectLinks}>
+            {project.links.map((link) => (
+              <a
+                key={link.id}
+                href={link.url}
+                target={link.url.startsWith("http") ? "_blank" : undefined}
+                rel={link.url.startsWith("http") ? "noreferrer" : undefined}
+                className={styles.projectLink}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {project.images.length > 0 && (
+        <section className={styles.gallerySection}>
+          <h2>Galeria</h2>
+
+          <div className={styles.galleryGrid}>
+            {project.images.map((image) => (
+              <figure key={image.id} className={styles.galleryItem}>
+                <img
+                  src={image.image_url}
+                  alt={image.alt_text ?? `Imagem do projeto ${project.title}`}
+                />
+
+                {image.caption && <figcaption>{image.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

@@ -142,3 +142,71 @@ export interface PortfolioPageHighlightRow {
   created_at: string;
   updated_at: string;
 }
+export interface ProjectLinkRow {
+  id: string;
+
+  project_id: string;
+
+  label: string;
+  url: string;
+  link_type: string;
+
+  icon_name: string | null;
+  order_index: number;
+  is_visible: boolean;
+
+  created_at: string;
+  updated_at: string;
+}
+export interface ProjectImageRow {
+  id: string;
+
+  project_id: string;
+
+  image_url: string;
+  alt_text: string | null;
+  caption: string | null;
+
+  image_type: string;
+  is_cover: boolean;
+  is_visible: boolean;
+
+  order_index: number;
+
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProjectDetailsRow {
+  id: string;
+
+  title: string;
+  slug: string;
+
+  subtitle: string | null;
+  short_description: string;
+  full_description: string | null;
+
+  category: string;
+  status: string;
+  project_year: number | null;
+  role: string | null;
+
+  problem: string | null;
+  solution: string | null;
+  impact: string | null;
+
+  cover_image_url: string | null;
+
+  technologies: string[];
+  links: ProjectLinkRow[];
+  images: ProjectImageRow[];
+
+  is_featured: boolean;
+  is_published: boolean;
+
+  order_index: number;
+
+  created_at: string;
+  updated_at: string;
+}

@@ -1,3 +1,4 @@
+import type { Session } from "@supabase/supabase-js";
 import { supabase } from "./supabaseClient";
 
 interface SignInWithPasswordParams {
@@ -37,7 +38,7 @@ export async function signOut() {
   }
 }
 
-export async function getCurrentSession() {
+export async function getCurrentSession(): Promise<Session | null> {
   if (!supabase) {
     return null;
   }
@@ -49,4 +50,24 @@ export async function getCurrentSession() {
   }
 
   return data.session;
+}
+
+export async function getIsCurrentUserAdmin(): Promise<boolean> {
+  if (!supabase) {
+    return false;
+  }
+
+  const session = await getCurrentSession();
+
+  if (!session) {
+    return false;
+  }
+
+  const { data, error } = await supabase.rpc("is_admin");
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return Boolean(data);
 }

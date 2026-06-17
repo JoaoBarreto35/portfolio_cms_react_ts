@@ -7,6 +7,8 @@ import { NotFoundPage } from "../features/portfolio/pages/NotFoundPage";
 import { PortfolioAreaPage } from "../features/portfolio/pages/PortfolioAreaPage";
 import { ProjectDetailsPage } from "../features/portfolio/pages/ProjectDetailsPage";
 import { AdminLoginPage } from "../features/admin/pages/AdminLoginPage";
+import { AdminProtectedRoute } from "../features/admin/components/AdminProtectedRoute";
+
 
 export const router = createBrowserRouter([
   {
@@ -44,8 +46,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "admin",
-        element: <AdminDashboardPage />,
+        element: (
+          <AdminProtectedRoute>
+            <AdminDashboardPage />
+          </AdminProtectedRoute>
+        ),
       },
+      
       {
         path: "*",
         element: <NotFoundPage />,

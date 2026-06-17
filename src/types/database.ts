@@ -252,3 +252,50 @@ export interface EducationRow {
   created_at: string;
   updated_at: string;
 }
+export interface ProjectCategoryRow {
+  id: string;
+
+  name: string;
+  slug: string;
+  description: string | null;
+
+  color: string;
+  icon_name: string | null;
+
+  order_index: number;
+  is_active: boolean;
+
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AdminProjectRow {
+  id: string;
+
+  category_id: string | null;
+
+  title: string;
+  slug: string;
+
+  short_description: string;
+  full_description: string | null;
+  subtitle: string | null;
+
+  status: string;
+  project_year: number | null;
+  role: string | null;
+
+  problem: string | null;
+  solution: string | null;
+  impact: string | null;
+
+  cover_image_url: string | null;
+
+  is_featured: boolean;
+  is_published: boolean;
+
+  order_index: number;
+
+  created_at: string;
+  updated_at: string;
+}

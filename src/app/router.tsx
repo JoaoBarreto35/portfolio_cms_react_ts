@@ -11,6 +11,8 @@ import { AdminProtectedRoute } from "../features/admin/components/AdminProtected
 import { AdminSettingsPage } from "../features/admin/pages/AdminSettingsPage";
 import { AdminContactLinksPage } from "../features/admin/pages/AdminContactLinksPage";
 import { AdminProjectsPage } from "../features/admin/pages/AdminProjectsPage";
+import { AdminProjectEditorPage } from "../features/admin/pages/AdminProjectEditorPage";
+
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +77,22 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <AdminProjectsPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/projects/new",
+        element: (
+          <AdminProtectedRoute>
+            <AdminProjectEditorPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/projects/:projectSlug",
+        element: (
+          <AdminProtectedRoute>
+            <AdminProjectEditorPage />
           </AdminProtectedRoute>
         ),
       },

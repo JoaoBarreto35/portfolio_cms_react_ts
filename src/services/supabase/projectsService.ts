@@ -1,5 +1,6 @@
 import { supabase } from "./supabaseClient";
 import type {
+  AdminProjectRow,
   ProjectDetailsRow,
   ProjectImageRow,
   ProjectLinkRow,
@@ -381,4 +382,91 @@ export async function getAdminProjects(): Promise<ProjectSummaryRow[]> {
   }
 
   return ((data ?? []) as ProjectQueryResult[]).map(mapProject);
+}
+export interface ProjectInput {
+  category_id: string | null;
+
+  title: string;
+  slug: string;
+
+  short_description: string;
+  full_description: string | null;
+  subtitle: string | null;
+
+  status: string;
+  project_year: number | null;
+  role: string | null;
+
+  problem: string | null;
+  solution: string | null;
+  impact: string | null;
+
+  cover_image_url: string | null;
+
+  is_featured: boolean;
+  is_published: boolean;
+
+  order_index: number;
+}
+
+export async function getAdminProjectBySlug(
+  projectSlug: string
+): Promise<AdminProjectRow | null> {
+  if (!supabase) {
+    return null;
+  }
+
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("slug", projectSlug)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function createProject(
+  values: ProjectInput
+): Promise<AdminProjectRow> {
+  if (!supabase) {
+    throw new Error("Supabase não está configurado.");
+  }
+
+  const { data, error } = await supabase
+    .from("projects")
+    .insert(values)
+    .select("*")
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function updateProject(
+  projectId: string,
+  values: ProjectInput
+): Promise<AdminProjectRow> {
+  if (!supabase) {
+    throw new Error("Supabase não está configurado.");
+  }
+
+  const { data, error } = await supabase
+    .from("projects")
+    .update(values)
+    .eq("id", projectId)
+    .select("*")
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 }

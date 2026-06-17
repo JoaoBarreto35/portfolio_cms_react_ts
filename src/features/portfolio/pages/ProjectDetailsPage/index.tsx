@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { Badge } from "../../../../components/ui/Badge";
 import { EmptyState } from "../../../../components/ui/EmptyState";
+import { ErrorState } from "../../../../components/ui/ErrorState";
+import { LoadingState } from "../../../../components/ui/LoadingState";
 import { getProjectStatusBadgeVariant } from "../../utils/getProjectStatusBadgeVariant";
 import { useProjectDetails } from "../../hooks/useProjectDetails";
 import { projectDetailsBySlug } from "../../data/mockPortfolioData";
@@ -49,6 +51,44 @@ export function ProjectDetailsPage() {
         }
       : null;
 
+  if (!projectSlug) {
+    return (
+      <EmptyState
+        eyebrow="Projeto não informado"
+        title="Nenhum projeto foi selecionado."
+        description="Volte para a Home ou acesse uma das vitrines para escolher um projeto."
+        action={{
+          label: "Voltar para a Home",
+          to: "/",
+          variant: "secondary",
+        }}
+      />
+    );
+  }
+
+  if (isLoading && !project) {
+    return (
+      <LoadingState
+        title="Carregando projeto"
+        description="Buscando os detalhes do projeto no portfólio."
+      />
+    );
+  }
+
+  if (errorMessage && !project) {
+    return (
+      <ErrorState
+        eyebrow="Erro ao carregar"
+        title="Não foi possível carregar esse projeto."
+        description="Tente novamente em instantes ou volte para a Home."
+        action={{
+          label: "Voltar para a Home",
+          to: "/",
+        }}
+      />
+    );
+  }
+
   if (!project) {
     return (
       <EmptyState
@@ -79,18 +119,6 @@ export function ProjectDetailsPage() {
             {project.status}
           </Badge>
         </div>
-
-        {isLoading && (
-          <p className={styles.helperText}>
-            Carregando detalhes do projeto...
-          </p>
-        )}
-
-        {!isLoading && errorMessage && (
-          <p className={styles.helperText}>
-            Detalhes locais em uso enquanto o Supabase não responde.
-          </p>
-        )}
       </section>
 
       <section className={styles.metaGrid} aria-label="Informações do projeto">
@@ -144,17 +172,19 @@ export function ProjectDetailsPage() {
         </article>
       </section>
 
-      <section className={styles.technologies}>
-        <p>Tecnologias</p>
+      {project.technologies.length > 0 && (
+        <section className={styles.technologies}>
+          <p>Tecnologias</p>
 
-        <div className={styles.techList}>
-          {project.technologies.map((technology) => (
-            <Badge key={technology} variant="primary">
-              {technology}
-            </Badge>
-          ))}
-        </div>
-      </section>
+          <div className={styles.techList}>
+            {project.technologies.map((technology) => (
+              <Badge key={technology} variant="primary">
+                {technology}
+              </Badge>
+            ))}
+          </div>
+        </section>
+      )}
 
       {project.links.length > 0 && (
         <section className={styles.linksSection}>
@@ -197,3 +227,4 @@ export function ProjectDetailsPage() {
     </div>
   );
 }
+

@@ -342,3 +342,43 @@ export async function getProjectDetailsBySlug(
 
   return mapProjectDetails(data as ProjectDetailsQueryResult);
 }
+export async function getAdminProjects(): Promise<ProjectSummaryRow[]> {
+  if (!supabase) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from("projects")
+    .select(
+      `
+        id,
+        title,
+        slug,
+        short_description,
+        status,
+        cover_image_url,
+        is_featured,
+        is_published,
+        order_index,
+        created_at,
+        updated_at,
+        project_categories (
+          name
+        ),
+        project_technologies (
+          order_index,
+          is_visible,
+          technologies (
+            name
+          )
+        )
+      `
+    )
+    .order("order_index", { ascending: true });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return ((data ?? []) as ProjectQueryResult[]).map(mapProject);
+}

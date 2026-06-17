@@ -10,7 +10,7 @@ import { AdminLoginPage } from "../features/admin/pages/AdminLoginPage";
 import { AdminProtectedRoute } from "../features/admin/components/AdminProtectedRoute";
 import { AdminSettingsPage } from "../features/admin/pages/AdminSettingsPage";
 import { AdminContactLinksPage } from "../features/admin/pages/AdminContactLinksPage";
-
+import { AdminProjectsPage } from "../features/admin/pages/AdminProjectsPage";
 
 export const router = createBrowserRouter([
   {
@@ -70,7 +70,14 @@ export const router = createBrowserRouter([
           </AdminProtectedRoute>
         ),
       },
-      
+      {
+        path: "admin/projects",
+        element: (
+          <AdminProtectedRoute>
+            <AdminProjectsPage />
+          </AdminProtectedRoute>
+        ),
+      },
       
       {
         path: "*",

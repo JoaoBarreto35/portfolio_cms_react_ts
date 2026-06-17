@@ -8,7 +8,7 @@ import { PortfolioAreaPage } from "../features/portfolio/pages/PortfolioAreaPage
 import { ProjectDetailsPage } from "../features/portfolio/pages/ProjectDetailsPage";
 import { AdminLoginPage } from "../features/admin/pages/AdminLoginPage";
 import { AdminProtectedRoute } from "../features/admin/components/AdminProtectedRoute";
-
+import { AdminSettingsPage } from "../features/admin/pages/AdminSettingsPage";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +52,15 @@ export const router = createBrowserRouter([
           </AdminProtectedRoute>
         ),
       },
+      {
+        path: "admin/settings",
+        element: (
+          <AdminProtectedRoute>
+            <AdminSettingsPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      
       
       {
         path: "*",

@@ -6,6 +6,7 @@ import { HomePage } from "../features/portfolio/pages/HomePage";
 import { NotFoundPage } from "../features/portfolio/pages/NotFoundPage";
 import { PortfolioAreaPage } from "../features/portfolio/pages/PortfolioAreaPage";
 import { ProjectDetailsPage } from "../features/portfolio/pages/ProjectDetailsPage";
+import { AdminLoginPage } from "../features/admin/pages/AdminLoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "project/:projectSlug",
         element: <ProjectDetailsPage />,
+      },
+      {
+        path: "admin/login",
+        element: <AdminLoginPage />,
       },
       {
         path: "admin",

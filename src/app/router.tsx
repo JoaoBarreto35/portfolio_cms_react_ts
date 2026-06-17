@@ -9,6 +9,8 @@ import { ProjectDetailsPage } from "../features/portfolio/pages/ProjectDetailsPa
 import { AdminLoginPage } from "../features/admin/pages/AdminLoginPage";
 import { AdminProtectedRoute } from "../features/admin/components/AdminProtectedRoute";
 import { AdminSettingsPage } from "../features/admin/pages/AdminSettingsPage";
+import { AdminContactLinksPage } from "../features/admin/pages/AdminContactLinksPage";
+
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +59,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <AdminSettingsPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/contact-links",
+        element: (
+          <AdminProtectedRoute>
+            <AdminContactLinksPage />
           </AdminProtectedRoute>
         ),
       },

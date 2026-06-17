@@ -20,6 +20,10 @@ const adminLinks = [
     href: "/admin/settings",
   },
   {
+    label: "Contatos",
+    href: "/admin/contact-links",
+  },
+  {
     label: "Projetos",
     href: "/admin/projects",
   },
@@ -35,6 +39,7 @@ const adminLinks = [
     label: "Skills",
     href: "/admin/skills",
   },
+
 ];
 
 function getNavLinkClassName({ isActive }: { isActive: boolean }) {

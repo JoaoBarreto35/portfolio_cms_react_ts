@@ -12,6 +12,7 @@ import { AdminSettingsPage } from "../features/admin/pages/AdminSettingsPage";
 import { AdminContactLinksPage } from "../features/admin/pages/AdminContactLinksPage";
 import { AdminProjectsPage } from "../features/admin/pages/AdminProjectsPage";
 import { AdminProjectEditorPage } from "../features/admin/pages/AdminProjectEditorPage";
+import { AdminProjectTechnologiesPage } from "../features/admin/pages/AdminProjectTechnologiesPage";
 
 
 export const router = createBrowserRouter([
@@ -93,6 +94,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <AdminProjectEditorPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/projects/:projectSlug/technologies",
+        element: (
+          <AdminProtectedRoute>
+            <AdminProjectTechnologiesPage />
           </AdminProtectedRoute>
         ),
       },

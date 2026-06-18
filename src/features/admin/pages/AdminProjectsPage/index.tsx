@@ -197,6 +197,10 @@ export function AdminProjectsPage() {
                 <Link to={`/admin/projects/${project.slug}`}>
                   Editar
                 </Link>
+
+                <Link to={`/admin/projects/${project.slug}/technologies`}>
+                  Tecnologias
+                </Link>
               </div>
             </article>
           ))}

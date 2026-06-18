@@ -299,3 +299,33 @@ export interface AdminProjectRow {
   created_at: string;
   updated_at: string;
 }
+export interface TechnologyRow {
+  id: string;
+
+  name: string;
+  slug: string;
+  description: string | null;
+
+  group_name: string | null;
+  color: string;
+  icon_name: string | null;
+
+  order_index: number;
+  is_active: boolean;
+
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProjectTechnologyRow {
+  id: string;
+
+  project_id: string;
+  technology_id: string;
+
+  order_index: number;
+  is_visible: boolean;
+
+  created_at: string;
+  updated_at: string;
+}

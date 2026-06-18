@@ -14,7 +14,9 @@ import { AdminProjectsPage } from "../features/admin/pages/AdminProjectsPage";
 import { AdminProjectEditorPage } from "../features/admin/pages/AdminProjectEditorPage";
 import { AdminProjectTechnologiesPage } from "../features/admin/pages/AdminProjectTechnologiesPage";
 import { AdminProjectLinksPage } from "../features/admin/pages/AdminProjectLinksPage";
+import { AdminPortfolioPagesPage } from "../features/admin/pages/AdminPortfolioPagesPage";
 import { AdminProjectImagesPage } from "../features/admin/pages/AdminProjectImagesPage";
+
 
 
 
@@ -121,6 +123,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <AdminProjectImagesPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/pages",
+        element: (
+          <AdminProtectedRoute>
+            <AdminPortfolioPagesPage />
           </AdminProtectedRoute>
         ),
       },

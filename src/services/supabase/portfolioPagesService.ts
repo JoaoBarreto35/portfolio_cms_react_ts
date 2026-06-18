@@ -64,3 +64,49 @@ export async function getPortfolioPageHighlights(
 
   return data ?? [];
 }
+export interface PortfolioPageInput {
+  eyebrow: string;
+  title: string;
+  description: string;
+  order_index: number;
+  is_active: boolean;
+}
+
+export async function getAdminPortfolioPages(): Promise<PortfolioPageRow[]> {
+  if (!supabase) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from("portfolio_pages")
+    .select("*")
+    .order("order_index", { ascending: true });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data ?? [];
+}
+
+export async function updatePortfolioPage(
+  portfolioPageId: string,
+  values: PortfolioPageInput
+): Promise<PortfolioPageRow> {
+  if (!supabase) {
+    throw new Error("Supabase não está configurado.");
+  }
+
+  const { data, error } = await supabase
+    .from("portfolio_pages")
+    .update(values)
+    .eq("id", portfolioPageId)
+    .select("*")
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}

@@ -28,6 +28,11 @@ const adminLinks = [
     href: "/admin/projects",
   },
   {
+    label: "Vitrines",
+    href: "/admin/pages",
+  },
+  
+  {
     label: "Experiências",
     href: "/admin/experiences",
   },

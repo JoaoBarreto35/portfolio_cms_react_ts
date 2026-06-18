@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-
 import { AppShell } from "../components/layout/AppShell";
 import { AdminDashboardPage } from "../features/admin/pages/AdminDashboardPage";
 import { HomePage } from "../features/portfolio/pages/HomePage";
@@ -20,6 +19,7 @@ import { AdminPortfolioPageProjectsPage } from "../features/admin/pages/AdminPor
 import { AdminPortfolioPageHighlightsPage } from "../features/admin/pages/AdminPortfolioPageHighlightsPage";
 import { AdminExperiencesPage } from "../features/admin/pages/AdminExperiencesPage";
 import { AdminEducationPage } from "../features/admin/pages/AdminEducationPage";
+import { AdminSkillsPage } from "../features/admin/pages/AdminSkillsPage";
 
 export const router = createBrowserRouter([
   {
@@ -166,7 +166,15 @@ export const router = createBrowserRouter([
             <AdminEducationPage />
           </AdminProtectedRoute>
         ),
-      },   
+      },
+      {
+        path: "admin/skills",
+        element: (
+          <AdminProtectedRoute>
+            <AdminSkillsPage />
+          </AdminProtectedRoute>
+        ),
+      },
       {
         path: "*",
         element: <NotFoundPage />,

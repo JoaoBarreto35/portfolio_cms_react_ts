@@ -17,9 +17,7 @@ import { AdminProjectLinksPage } from "../features/admin/pages/AdminProjectLinks
 import { AdminPortfolioPagesPage } from "../features/admin/pages/AdminPortfolioPagesPage";
 import { AdminProjectImagesPage } from "../features/admin/pages/AdminProjectImagesPage";
 import { AdminPortfolioPageProjectsPage } from "../features/admin/pages/AdminPortfolioPageProjectsPage";
-
-
-
+import { AdminPortfolioPageHighlightsPage } from "../features/admin/pages/AdminPortfolioPageHighlightsPage";
 
 export const router = createBrowserRouter([
   {
@@ -143,6 +141,15 @@ export const router = createBrowserRouter([
           </AdminProtectedRoute>
         ),
       },
+      {
+        path: "admin/pages/:pageSlug/highlights",
+        element: (
+          <AdminProtectedRoute>
+            <AdminPortfolioPageHighlightsPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      
       
       {
         path: "*",

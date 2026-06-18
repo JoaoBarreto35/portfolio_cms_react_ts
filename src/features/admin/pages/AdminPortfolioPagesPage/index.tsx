@@ -263,6 +263,10 @@ export function AdminPortfolioPagesPage() {
                   <Link to={`/admin/pages/${selectedPortfolioPage.slug}/projects`}>
                     Projetos da vitrine
                   </Link>
+
+                  <Link to={`/admin/pages/${selectedPortfolioPage.slug}/highlights`}>
+                    Destaques
+                  </Link>
                 </div>
               </div>
 

@@ -18,6 +18,8 @@ import { AdminPortfolioPagesPage } from "../features/admin/pages/AdminPortfolioP
 import { AdminProjectImagesPage } from "../features/admin/pages/AdminProjectImagesPage";
 import { AdminPortfolioPageProjectsPage } from "../features/admin/pages/AdminPortfolioPageProjectsPage";
 import { AdminPortfolioPageHighlightsPage } from "../features/admin/pages/AdminPortfolioPageHighlightsPage";
+import { AdminExperiencesPage } from "../features/admin/pages/AdminExperiencesPage";
+
 
 export const router = createBrowserRouter([
   {
@@ -149,6 +151,15 @@ export const router = createBrowserRouter([
           </AdminProtectedRoute>
         ),
       },
+      {
+        path: "admin/experiences",
+        element: (
+          <AdminProtectedRoute>
+            <AdminExperiencesPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      
       
       
       {

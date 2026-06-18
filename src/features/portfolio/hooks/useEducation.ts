@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getEducationItems } from "../../../services/supabase/educationService";
+import { getEducation } from "../../../services/supabase/educationService";
 import type { EducationRow } from "../../../types/database";
 
 interface UseEducationResult {
@@ -21,7 +21,7 @@ export function useEducation(): UseEducationResult {
         setIsLoading(true);
         setErrorMessage(null);
 
-        const data = await getEducationItems();
+        const data = await getEducation();
 
         if (!isMounted) {
           return;

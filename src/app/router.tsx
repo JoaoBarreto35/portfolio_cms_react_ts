@@ -16,6 +16,7 @@ import { AdminProjectTechnologiesPage } from "../features/admin/pages/AdminProje
 import { AdminProjectLinksPage } from "../features/admin/pages/AdminProjectLinksPage";
 import { AdminPortfolioPagesPage } from "../features/admin/pages/AdminPortfolioPagesPage";
 import { AdminProjectImagesPage } from "../features/admin/pages/AdminProjectImagesPage";
+import { AdminPortfolioPageProjectsPage } from "../features/admin/pages/AdminPortfolioPageProjectsPage";
 
 
 
@@ -131,6 +132,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <AdminPortfolioPagesPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/pages/:pageSlug/projects",
+        element: (
+          <AdminProtectedRoute>
+            <AdminPortfolioPageProjectsPage />
           </AdminProtectedRoute>
         ),
       },

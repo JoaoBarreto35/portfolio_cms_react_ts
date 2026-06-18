@@ -253,11 +253,17 @@ export function AdminPortfolioPagesPage() {
                   </span>
                 </div>
 
-                {selectedPortfolioPage.slug !== "home" && (
-                  <Link to={`/${selectedPortfolioPage.slug}`} target="_blank">
-                    Ver página
+                <div className={styles.formHeaderActions}>
+                  {selectedPortfolioPage.slug !== "home" && (
+                    <Link to={`/${selectedPortfolioPage.slug}`} target="_blank">
+                      Ver página
+                    </Link>
+                  )}
+
+                  <Link to={`/admin/pages/${selectedPortfolioPage.slug}/projects`}>
+                    Projetos da vitrine
                   </Link>
-                )}
+                </div>
               </div>
 
               <div className={styles.warningBox}>

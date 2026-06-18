@@ -14,6 +14,8 @@ import { AdminProjectsPage } from "../features/admin/pages/AdminProjectsPage";
 import { AdminProjectEditorPage } from "../features/admin/pages/AdminProjectEditorPage";
 import { AdminProjectTechnologiesPage } from "../features/admin/pages/AdminProjectTechnologiesPage";
 import { AdminProjectLinksPage } from "../features/admin/pages/AdminProjectLinksPage";
+import { AdminProjectImagesPage } from "../features/admin/pages/AdminProjectImagesPage";
+
 
 
 export const router = createBrowserRouter([
@@ -111,6 +113,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <AdminProjectLinksPage />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/projects/:projectSlug/images",
+        element: (
+          <AdminProtectedRoute>
+            <AdminProjectImagesPage />
           </AdminProtectedRoute>
         ),
       },

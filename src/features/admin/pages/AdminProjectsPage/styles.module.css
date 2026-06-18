@@ -171,9 +171,11 @@
   }
   
   .actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.6rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Cria 2 colunas de tamanhos iguais */
+    gap: 0.6rem; /* Espaçamento entre os itens */
+   
+    
   }
   
   .actions a {

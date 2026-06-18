@@ -599,6 +599,15 @@ export function AdminProjectEditorPage() {
               Links
             </Link>
           )}
+          {!isCreating && project && (
+            <Link
+              to={`/admin/projects/${project.slug}/images`}
+              className={styles.previewLink}
+            >
+              Imagens
+            </Link>
+          )}
+
 
 
           <button type="submit" disabled={isSubmitting}>

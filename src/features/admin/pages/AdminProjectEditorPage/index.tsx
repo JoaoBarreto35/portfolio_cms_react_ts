@@ -581,6 +581,7 @@ export function AdminProjectEditorPage() {
               Ver no site
             </Link>
           )}
+
           {!isCreating && project && (
             <Link
               to={`/admin/projects/${project.slug}/technologies`}
@@ -589,6 +590,16 @@ export function AdminProjectEditorPage() {
               Tecnologias
             </Link>
           )}
+
+          {!isCreating && project && (
+            <Link
+              to={`/admin/projects/${project.slug}/links`}
+              className={styles.previewLink}
+            >
+              Links
+            </Link>
+          )}
+
 
           <button type="submit" disabled={isSubmitting}>
             {isSubmitting

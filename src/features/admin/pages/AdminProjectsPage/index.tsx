@@ -201,6 +201,10 @@ export function AdminProjectsPage() {
                 <Link to={`/admin/projects/${project.slug}/technologies`}>
                   Tecnologias
                 </Link>
+
+                <Link to={`/admin/projects/${project.slug}/links`}>
+                  Links
+                </Link>
               </div>
             </article>
           ))}
